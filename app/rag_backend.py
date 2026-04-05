@@ -8,7 +8,24 @@ from typing import Optional
 from numpy import dot
 from numpy.linalg import norm
 from app.law_registry import LAW_REGISTRY, LawConfig
+import os
+import requests
+import zipfile
 
+DATA_URL = "https://huggingface.co/datasets/bringerofdarkness/bd-legal-ai-db/resolve/main/data.zip"
+
+def ensure_data():
+    if not os.path.exists("data"):
+        print("Downloading vector DB...")
+        r = requests.get(DATA_URL)
+        with open("data.zip", "wb") as f:
+            f.write(r.content)
+
+        print("Extracting...")
+        with zipfile.ZipFile("data.zip", "r") as zip_ref:
+            zip_ref.extractall(".")
+
+        print("Done.")
 
 def tokenize_for_bm25(text: str):
     return re.findall(r"\w+", text.lower())
@@ -17,7 +34,7 @@ def tokenize_for_bm25(text: str):
 embedding = HuggingFaceEmbeddings(
     model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 )
-
+ensure_data()
 # ---- Law Routing Embeddings ----
 LAW_EMBEDDINGS = {}
 
