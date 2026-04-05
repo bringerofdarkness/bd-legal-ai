@@ -41,9 +41,9 @@ for law_id, config in LAW_REGISTRY.items():
         embedding_function=embedding,
     )
 # ---- Build BM25 index from Chroma ----
-all_docs_penal = VECTORSTORES["penal_code"].get()["documents"]
-bm25_corpus_penal = [tokenize_for_bm25(doc) for doc in all_docs_penal]
-bm25_penal = BM25Okapi(bm25_corpus_penal)
+all_docs_penal = VECTORSTORES["penal_code"].get().get("documents", [])
+bm25_corpus_penal = [tokenize_for_bm25(doc) for doc in all_docs_penal if doc and doc.strip()]
+bm25_penal = BM25Okapi(bm25_corpus_penal) if bm25_corpus_penal else None
 
 
 def rerank_definition(query: str, docs_with_scores):
@@ -293,7 +293,7 @@ def build_evidence_bundle(query: str, k_initial: int = 15, k_final: int = 5):
     bm25_scores = None
     top_bm25_idx = []
 
-    if active_config.use_bm25:
+    if active_config.use_bm25 and bm25_penal is not None:
         bm25_scores = bm25_penal.get_scores(tokenized_query)
         top_bm25_idx = sorted(
             range(len(bm25_scores)),
