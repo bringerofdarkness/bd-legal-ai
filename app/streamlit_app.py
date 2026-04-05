@@ -67,10 +67,9 @@ if search_clicked and query.strip():
     if resp["status"] == "refused":
         st.markdown("## Result")
         st.warning(
-            resp.get(
-                "refusal_reason",
-                "Unable to answer confidently from the available legal evidence.",
-            )
+            "⚠️ Demo mode: Knowledge base is not loaded in this deployment.\n\n"
+            "This public demo shows the app structure, UI, and deployment pipeline. "
+            "The full legal knowledge base works in local/proper production deployment."
         )
     else:
         st.markdown("## Answer")
@@ -89,7 +88,6 @@ if search_clicked and query.strip():
                     st.write(e["text"][:400])
                     st.divider()
 
-        # ✅ feedback MUST be inside success block
         st.markdown("---")
         st.caption("Was this answer helpful?")
 
