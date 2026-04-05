@@ -61,7 +61,7 @@ with st.form("legal_query_form"):
     search_clicked = st.form_submit_button("Get Answer", use_container_width=True)
 
 if search_clicked and query.strip():
-    with st.spinner("Analyzing law..."):
+    with st.spinner("Analyzing law... (demo deployment has no DB yet)"):
         resp = answer_query(query.strip())
 
     if resp["status"] == "refused":
