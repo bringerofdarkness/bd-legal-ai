@@ -1,18 +1,13 @@
-
-
-
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from rank_bm25 import BM25Okapi
+import os
 import re
 from typing import Optional
 
 from numpy import dot
 from numpy.linalg import norm
 from app.law_registry import LAW_REGISTRY, LawConfig
-
-
-
 
 
 def tokenize_for_bm25(text: str):
@@ -32,16 +27,27 @@ for law_id, config in LAW_REGISTRY.items():
 
 penal_config = LAW_REGISTRY["penal_code"]
 
-VECTORSTORES: dict[str, Chroma] = {}
 
-for law_id, config in LAW_REGISTRY.items():
-    VECTORSTORES[law_id] = Chroma(
+def load_vectorstore(config: LawConfig):
+    if not os.path.exists(config.persist_dir):
+        return None
+    return Chroma(
         collection_name=config.collection_name,
         persist_directory=config.persist_dir,
         embedding_function=embedding,
     )
+
+
+VECTORSTORES: dict[str, Optional[Chroma]] = {}
+
+for law_id, config in LAW_REGISTRY.items():
+    VECTORSTORES[law_id] = load_vectorstore(config)
+
 # ---- Build BM25 index from Chroma ----
-all_docs_penal = VECTORSTORES["penal_code"].get().get("documents", [])
+all_docs_penal = []
+if VECTORSTORES["penal_code"] is not None:
+    all_docs_penal = VECTORSTORES["penal_code"].get().get("documents", [])
+
 bm25_corpus_penal = [tokenize_for_bm25(doc) for doc in all_docs_penal if doc and doc.strip()]
 bm25_penal = BM25Okapi(bm25_corpus_penal) if bm25_corpus_penal else None
 
@@ -233,6 +239,9 @@ def build_evidence_bundle(query: str, k_initial: int = 15, k_final: int = 5):
 
     active_db = VECTORSTORES[active_law_id]
     active_config = LAW_REGISTRY[active_law_id]
+    if active_db is None:
+        return []
+    
     retrieval_query = normalize_query(query)
 
     # Penal Code: hard route for punishment of theft
@@ -282,7 +291,7 @@ def build_evidence_bundle(query: str, k_initial: int = 15, k_final: int = 5):
 
     # Contract Act: strong override to Section 2 definitions
     if analysis["law_hint"] == "contract_act" and analysis["concept_hint"] == "section_2_definition":
-        vector_results = VECTORSTORES["contract_act"].similarity_search_with_score(
+       vector_results = active_db.similarity_search_with_score(
             "section 2 definitions contract act",
             k=10,
             filter={"section_number": 2}
