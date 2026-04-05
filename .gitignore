@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env
+
+chroma_*_broken/
+chroma_*_legacy/
+chroma_penal_code/
+chroma_penal_code_v2/
+
+*.html
+*.pdf

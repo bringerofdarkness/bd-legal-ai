@@ -1,0 +1,164 @@
+[
+  {
+    "query": "what is theft?",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "378"
+  },
+  {
+    "query": "define theft",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "378"
+  },
+  {
+    "query": "punishment for theft",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "379"
+  },
+  {
+    "query": "penalty for theft",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "379"
+  },
+  {
+    "query": "someone stole my phone",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "378"
+  },
+  {
+    "query": "my mobile was stolen",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "378"
+  },
+  {
+    "query": "he took my bag",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "378"
+  },
+  {
+    "query": "what happens if someone steals",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "379"
+  },
+  {
+    "query": "what is proposal?",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "define proposal",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "what is acceptance",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "define acceptance",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "what is promise",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "define promise",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "when proposal is accepted what does it become",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "what is promisor",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "what is promisee",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "meaning of agreement in contract law",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "what is contract",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "what is consideration",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "define consideration",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "company tax filing process",
+    "expected_status": "refused"
+  },
+  {
+    "query": "how to file income tax return",
+    "expected_status": "refused"
+  },
+  {
+    "query": "divorce procedure in bangladesh",
+    "expected_status": "refused"
+  },
+  {
+    "query": "land dispute resolution law",
+    "expected_status": "refused"
+  },
+  {
+    "query": "constitutional rights of citizens",
+    "expected_status": "refused"
+  },
+  {
+    "query": "bank loan recovery rules",
+    "expected_status": "refused"
+  },
+  {
+    "query": "cyber crime law punishment",
+    "expected_status": "refused"
+  },
+  {
+    "query": "marriage registration process",
+    "expected_status": "refused"
+  },
+  {
+    "query": "traffic rules fine",
+    "expected_status": "refused"
+  }
+]

@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+.venv/
+venv/
+env/
+.git/
+.gitignore
+.ipynb_checkpoints/
+*.ipynb
+eval_results.json
+README.md
+PROJECT_STATUS.md
