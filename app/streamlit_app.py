@@ -17,7 +17,7 @@ st.markdown(
 )
 
 st.title("⚖️ Bangladesh Legal Assistant")
-st.caption("Precision-first legal answers grounded in official Bangladesh law.")
+st.caption("Precision-first legal answers grounded in official Bangladesh law. Demo deployment.")
 with st.sidebar:
     st.header("About")
     st.write("AI-powered legal assistant for Bangladesh law with citation-grounded answers.")
