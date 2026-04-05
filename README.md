@@ -1,3 +1,11 @@
+---
+title: BD Legal AI
+emoji: ⚖️
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 8501
+---
 # AI-Powered Bangladesh Legal Assistant
 
 ## Project Goal
@@ -27,6 +35,12 @@ The system:
 - `eval_queries.json` - evaluation dataset
 - `eval_results.json` - saved evaluation results
 
-## How to Run App
-```bash
-streamlit run app.py
+
+---
+
+## Then run these 3 commands
+
+```bat
+git add README.md
+git commit -m "fix readme"
+git push hf main
