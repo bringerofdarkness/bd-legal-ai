@@ -17,9 +17,12 @@ DATA_URL = "https://huggingface.co/datasets/bringerofdarkness/bd-legal-ai-db/res
 def ensure_data():
     if not os.path.exists("data"):
         print("Downloading vector DB...")
-        r = requests.get(DATA_URL)
+
+        r = requests.get(DATA_URL, stream=True)
         with open("data.zip", "wb") as f:
-            f.write(r.content)
+            for chunk in r.iter_content(chunk_size=8192):
+                if chunk:
+                    f.write(chunk)
 
         print("Extracting...")
         with zipfile.ZipFile("data.zip", "r") as zip_ref:
