@@ -6,6 +6,14 @@ Built with hybrid retrieval (Chroma + BM25), Streamlit, Docker, and Hugging Face
 ## Live Demo
 [Hugging Face Space](https://huggingface.co/spaces/bringerofdarkness/bd-legal-ai)
 
+## Screenshots
+
+### App Interface
+![UI](assets/home.png)
+
+### Answer with Citations
+![Answer](assets/questionAns.png)
+
 ## Features
 - legal question answering
 - law-aware retrieval
