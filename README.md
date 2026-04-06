@@ -64,6 +64,11 @@ This public deployment downloads the vector database from a Hugging Face Dataset
 - Additional law coverage
 - Evaluation and benchmarking improvements
 
+## Author
+
+Shahrul Zakaria  
+https://github.com/bringerofdarkness
+
 ## Local Run
 ```bash
 docker build -t bd-legal-ai .
