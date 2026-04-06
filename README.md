@@ -1,9 +1,10 @@
 # Bangladesh Legal AI Assistant
 
 RAG-based legal assistant for Bangladesh law with citation-grounded answers using hybrid retrieval (Chroma + BM25).
+Built with hybrid retrieval (Chroma + BM25), Streamlit, Docker, and Hugging Face Spaces/Datasets.
 
 ## Live Demo
-https://huggingface.co/spaces/bringerofdarkness/bd-legal-ai
+[Hugging Face Space](https://huggingface.co/spaces/bringerofdarkness/bd-legal-ai)
 
 ## Features
 - legal question answering
@@ -12,7 +13,7 @@ https://huggingface.co/spaces/bringerofdarkness/bd-legal-ai
 - hybrid retrieval (vector + keyword)
 - deployed with Docker
 - remote DB loading from Hugging Face Dataset
-
+  
 ## Demo Note
 This is a public demo deployment. The system downloads its knowledge base at runtime and currently supports selected laws only.  
 This tool is for educational purposes and does not provide legal advice.
@@ -42,15 +43,14 @@ User → Streamlit UI → retrieval pipeline → Chroma + BM25 → answer + cita
 - `docs/` — project notes and evaluation artifacts
 
 ## Deployment Notes
-This deployment downloads the vector database from a Hugging Face Dataset at startup.
+This public deployment downloads the vector database from a Hugging Face Dataset at startup.
 
 ## Limitations
-- limited law coverage
-- demo/prototype system
+- currently supports only selected laws
+- still a demo / portfolio prototype
 - not legal advice
 
 ## Local Run
-
 ```bash
 docker build -t bd-legal-ai .
 docker run -p 8501:8501 bd-legal-ai
