@@ -1,46 +1,56 @@
----
-title: BD Legal AI
-emoji: ⚖️
-colorFrom: blue
-colorTo: purple
-sdk: docker
-app_port: 8501
----
-# AI-Powered Bangladesh Legal Assistant
+# Bangladesh Legal AI Assistant
 
-## Project Goal
-Build a precision-first legal AI assistant for Bangladesh law using official law PDFs.
+RAG-based legal assistant for Bangladesh law with citation-grounded answers using hybrid retrieval (Chroma + BM25).
 
-The system:
-- answers legal questions with grounded citations
-- refuses when evidence is weak or out of scope
-- supports natural user phrasing
-- is designed for scalable multi-law expansion
+## Live Demo
+https://huggingface.co/spaces/bringerofdarkness/bd-legal-ai
 
-## Current Supported Laws
+## Features
+- legal question answering
+- law-aware retrieval
+- citation-grounded responses
+- hybrid retrieval (vector + keyword)
+- deployed with Docker
+- remote DB loading from Hugging Face Dataset
+
+## Demo Note
+This is a public demo deployment. The system downloads its knowledge base at runtime and currently supports selected laws only.  
+This tool is for educational purposes and does not provide legal advice.
+
+## Current Law Coverage
 - The Penal Code, 1860
 - The Contract Act, 1872
 
-## Current Supported Query Types
-- Definitions
-- Punishment queries
-- Legal meaning queries
-- Natural language incident queries
+## Tech Stack
+- Python
+- Streamlit
+- Chroma
+- BM25
+- sentence-transformers
+- LangChain
+- Docker
+- Hugging Face Spaces / Datasets
 
-## Architecture Files
-- `app.py` - Streamlit UI
-- `rag_backend.py` - retrieval, routing, answer generation
-- `law_registry.py` - law configuration and registry
-- `run_eval.py` - evaluation runner
-- `eval_queries.json` - evaluation dataset
-- `eval_results.json` - saved evaluation results
+## System Architecture
+User → Streamlit UI → retrieval pipeline → Chroma + BM25 → answer + citations
 
+## Repository Structure
+- `app/streamlit_app.py` — UI
+- `app/rag_backend.py` — retrieval and answer generation
+- `app/law_registry.py` — law config
+- `ingestion/` — ingestion notebooks
+- `docs/` — project notes and evaluation artifacts
 
----
+## Deployment Notes
+This deployment downloads the vector database from a Hugging Face Dataset at startup.
 
-## Then run these 3 commands
+## Limitations
+- limited law coverage
+- demo/prototype system
+- not legal advice
 
-```bat
-git add README.md
-git commit -m "fix readme"
-git push hf main
+## Local Run
+
+```bash
+docker build -t bd-legal-ai .
+docker run -p 8501:8501 bd-legal-ai
