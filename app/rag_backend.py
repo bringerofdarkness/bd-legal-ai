@@ -16,7 +16,7 @@ from app.services.selection_service import select_top_bundle_item
 from app.services.answer_label_service import get_answer_label
 from app.services.evidence_service import order_evidence
 from app.services.citation_service import build_citations
-
+from app.services.logging_service import log_query
 
 
 DATA_URL = "https://huggingface.co/datasets/bringerofdarkness/bd-legal-ai-db/resolve/main/data.zip"
@@ -721,7 +721,7 @@ def answer_query(query: str, debug: bool = False) -> dict:
 
 
     ordered_evidence = order_evidence(top, bundle_sorted)
-
+    log_query(query, query_type, analysis.get("law_hint"), top["section"], enabled=debug)
     return {
         "status": "ok",
         "answer_text": answer_text,
