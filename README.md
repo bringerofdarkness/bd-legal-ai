@@ -102,7 +102,7 @@ This public deployment downloads the vector database from a Hugging Face Dataset
 - Improved answer formatting and UX
 - Additional law coverage
 - Evaluation and benchmarking improvements
-
+```
 ## Author
 
 Shahrul Zakaria  
