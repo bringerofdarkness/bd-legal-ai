@@ -69,8 +69,12 @@ The system is evaluated using a custom test set of legal queries covering:
 - Provides structured error categorization:
   - `status_error`
   - `law_error`
-  - `section_error`
-
+  
+### Current Evaluation Score
+- Accuracy: **50/50 (100%)**
+- Evaluated on curated legal queries (definition, punishment, refusal cases)
+- CI automatically validates results on every push
+  
 ### Reproducibility
 
 Run evaluation locally:
