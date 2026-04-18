@@ -100,6 +100,9 @@ def main():
     print(f"Failed: {failed}")
     print(f"Score:  {passed}/{total}")
 
+    if passed < total:
+        exit(1)
+
     error_counts = Counter(r["error_type"] for r in results if not r["pass"])
 
     print("\n=== Error Breakdown ===")
