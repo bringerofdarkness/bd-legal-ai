@@ -1,15 +1,23 @@
-from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
+from langchain_huggingface import HuggingFaceEmbeddings
 from rank_bm25 import BM25Okapi
+from app.services.scope_service import is_cyber_query, is_supported_scope
 import os
 import re
 from typing import Optional
-
+from app.services.query_classifier import classify_query
 from numpy import dot
 from numpy.linalg import norm
 from app.law_registry import LAW_REGISTRY, LawConfig
 import requests
 import zipfile
+from app.services.refusal_service import build_refusal
+from app.services.selection_service import select_top_bundle_item
+from app.services.answer_label_service import get_answer_label
+from app.services.evidence_service import order_evidence
+from app.services.citation_service import build_citations
+
+
 
 DATA_URL = "https://huggingface.co/datasets/bringerofdarkness/bd-legal-ai-db/resolve/main/data.zip"
 
@@ -498,47 +506,33 @@ def build_evidence_bundle(query: str, k_initial: int = 15, k_final: int = 5):
 
 
 def answer_query(query: str, debug: bool = False) -> dict:
-    q = query.lower()
-    analysis = analyze_query(query)
+    query_type = classify_query(query)
+    normalized_query = query.strip().lower()
+
+    is_definition_query = query_type == "definition"
+    is_punishment_query = query_type == "punishment"
+    is_section_query = query_type == "section_lookup"
+    is_concept_query = query_type == "concept"
+    is_out_of_scope_query = False
+
+    # query_type available for routing/debugging
+
+    q = normalized_query
+    analysis = analyze_query(normalized_query)
 
    
     
-    if any(term in q for term in ["cyber", "facebook", "hack", "hacked", "online account", "account"]):
-            return {
-            "status": "refused",
-            "answer_text": "",
-            "citations": [],
-            "evidence": [],
-            "refusal_reason": "Cyber-related offences are outside the scope of the currently indexed laws."
-        }
-    supported_contract_terms = {
-        "proposal", "acceptance", "promise", "promisor", "promisee",
-        "consideration", "agreement", "contract"
-    }
+    if is_cyber_query(q):
+        return build_refusal("Cyber-related offences are outside the scope of the currently indexed laws.")
 
-    theft_terms = {
-        "theft", "steal", "stole", "stolen", "steals", "stealing",
-        "took", "taken", "bag", "phone", "mobile", "money", "watch", "property"
-    }
-
-    in_supported_scope = (
-        analysis.get("law_hint") in {"penal_code", "contract_act"}
-        or any(term in q for term in supported_contract_terms)
-        or any(term in q for term in theft_terms)
-    )
+    in_supported_scope = is_supported_scope(q, analysis)
 
     if not in_supported_scope:
-        return {
-            "status": "refused",
-            "answer_text": "",
-            "citations": [],
-            "evidence": [],
-            "refusal_reason": (
-                "This version currently supports theft-related Penal Code questions "
-                "and Contract Act Section 2 concepts such as proposal, acceptance, "
-                "promise, promisor, promisee, agreement, contract, and consideration."
-            )
-        }
+        return build_refusal(
+            "This version currently supports theft-related Penal Code questions "
+            "and Contract Act Section 2 concepts such as proposal, acceptance, "
+            "promise, promisor, promisee, agreement, contract, and consideration."
+)
 
     if analysis["law_hint"] is None and choose_active_law(query) is None:
         return {
@@ -579,43 +573,29 @@ def answer_query(query: str, debug: bool = False) -> dict:
         kw in q for kw in ["punishment", "punish", "penalty", "sentence"]
     )
 
-    top = bundle_sorted[0]
-
-    # explicit final selection for theft queries
-    if "theft" in q:
-        if wants_definition:
-            for b in bundle_sorted:
-                if str(b["section"]) == "378":
-                    top = b
-                    break
-
-        elif wants_punishment:
-            for b in bundle_sorted:
-                if str(b["section"]) == "379":
-                    top = b
-                    break
+    top = select_top_bundle_item(
+        bundle_sorted,
+        q,
+        is_definition_query,
+        is_punishment_query,
+    )
         
 
     display_text = top["text"]
     simple_explanation = None
 
-    if any(kw in q for kw in ["punish", "punishment", "penalty", "sentence", "fine", "imprisonment"]):
-        label = "punishment"
-    elif any(kw in q for kw in ["define", "definition", "meaning", "what is", "what constitutes"]):
-        label = "definition"
-    else:
-        label = "provision"
+    label = get_answer_label(q)
 
         
 
     if top["act"] == "Contract Act, 1872" and top["section"] == 2:
         clause_letter = None
 
-        if ("accept" in q and "become" in q) or ("accepted" in q and "becomes" in q):
+        if is_definition_query and ("accept" in q and "become" in q):
             clause_letter = "b"
-        elif "acceptance" in q:
+        elif is_definition_query and "acceptance" in q:
             clause_letter = "b"
-        elif "promisee" in q or "promisor" in q:
+        elif (is_definition_query and "promisee" in q) or ("promisor" in q):
             clause_letter = "c"
         elif "promise" in q:
             clause_letter = "b"
@@ -737,33 +717,10 @@ def answer_query(query: str, debug: bool = False) -> dict:
             f"the relevant {label} is:\n\n{display_text}"
         )
 
-    citations = []
-    allowed_sections = {top["section"]}
-
-    if top["act"] == "The Penal Code, 1860" and str(top["section"]) == "379":
-        allowed_sections.add(378)
-
-    heading_part = f" ({top['heading']})" if top.get("heading") else ""
-    citations.append(
-        f"{top['act']} — Section {top['section']}{heading_part}, pp. {top['pages'][0]}–{top['pages'][1]}"
-    )
-
-    seen_sections = {top["section"]}
-
-    for b in bundle_sorted:
-        if b["section"] in seen_sections:
-            continue
-        if b["section"] not in allowed_sections:
-            continue
-
-        heading_part = f" ({b['heading']})" if b.get("heading") else ""
-        citations.append(
-            f"{b['act']} — Section {b['section']}{heading_part}, pp. {b['pages'][0]}–{b['pages'][1]}"
-        )
-        seen_sections.add(b["section"])
+    citations = build_citations(top, bundle_sorted)
 
 
-    ordered_evidence = [top] + [b for b in bundle_sorted if b != top]
+    ordered_evidence = order_evidence(top, bundle_sorted)
 
     return {
         "status": "ok",

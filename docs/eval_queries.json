@@ -1,281 +1,626 @@
 [
   {
+    "id": "pc_theft_def_001",
     "query": "what is theft?",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "378"
+    "expected_section": "378",
+    "category": "definition",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 378"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Basic definition question"
   },
   {
+    "id": "pc_theft_def_002",
     "query": "define theft",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "378"
+    "expected_section": "378",
+    "category": "definition",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 378"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Definition phrasing variation"
   },
   {
+    "id": "pc_theft_pun_001",
     "query": "punishment for theft",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "379"
+    "expected_section": "379",
+    "category": "punishment",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 379"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Punishment query, not definition"
   },
   {
+    "id": "pc_theft_pun_002",
     "query": "penalty for theft",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "379"
+    "expected_section": "379",
+    "category": "punishment",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 379"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Penalty wording variation"
   },
   {
+    "id": "pc_theft_concept_001",
     "query": "someone stole my phone",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "378"
+    "expected_section": "378",
+    "category": "concept",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 378"],
+    "difficulty": "medium",
+    "should_refuse": false,
+    "notes": "Scenario-based theft concept mapping"
   },
   {
+    "id": "pc_theft_concept_002",
     "query": "my mobile was stolen",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "378"
+    "expected_section": "378",
+    "category": "concept",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 378"],
+    "difficulty": "medium",
+    "should_refuse": false,
+    "notes": "Scenario phrasing for theft"
   },
   {
+    "id": "pc_theft_concept_003",
     "query": "he took my bag",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "378"
+    "expected_section": "378",
+    "category": "concept",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 378"],
+    "difficulty": "medium",
+    "should_refuse": false,
+    "notes": "Informal theft scenario"
   },
   {
+    "id": "pc_theft_pun_003",
     "query": "what happens if someone steals",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "379"
+    "expected_section": "379",
+    "category": "punishment",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 379"],
+    "difficulty": "medium",
+    "should_refuse": false,
+    "notes": "Punishment implied through conversational wording"
   },
   {
+    "id": "ca_proposal_def_001",
     "query": "what is proposal?",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Basic proposal definition"
   },
   {
+    "id": "ca_proposal_def_002",
     "query": "define proposal",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Definition phrasing variation"
   },
   {
+    "id": "ca_acceptance_def_001",
     "query": "what is acceptance",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Basic acceptance definition"
   },
   {
+    "id": "ca_acceptance_def_002",
     "query": "define acceptance",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Definition phrasing variation"
   },
   {
+    "id": "ca_promise_def_001",
     "query": "what is promise",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Basic promise definition"
   },
   {
+    "id": "ca_promise_def_002",
     "query": "define promise",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Definition phrasing variation"
   },
   {
+    "id": "ca_promise_concept_001",
     "query": "when proposal is accepted what does it become",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "concept",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "medium",
+    "should_refuse": false,
+    "notes": "Concept relation between proposal and promise"
   },
   {
+    "id": "ca_promisor_def_001",
     "query": "what is promisor",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Basic promisor definition"
   },
   {
+    "id": "ca_promisee_def_001",
     "query": "what is promisee",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Basic promisee definition"
   },
   {
+    "id": "ca_agreement_def_001",
     "query": "meaning of agreement in contract law",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Agreement definition query"
   },
   {
+    "id": "ca_contract_def_001",
     "query": "what is contract",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Basic contract definition"
   },
   {
+    "id": "ca_consideration_def_001",
     "query": "what is consideration",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Basic consideration definition"
   },
   {
+    "id": "ca_consideration_def_002",
     "query": "define consideration",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Definition phrasing variation"
   },
   {
+    "id": "oos_tax_001",
     "query": "company tax filing process",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "medium",
+    "should_refuse": true,
+    "notes": "Tax filing outside supported scope"
   },
   {
+    "id": "oos_tax_002",
     "query": "how to file income tax return",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "medium",
+    "should_refuse": true,
+    "notes": "Income tax outside supported scope"
   },
   {
+    "id": "oos_divorce_001",
     "query": "divorce procedure in bangladesh",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "medium",
+    "should_refuse": true,
+    "notes": "Family law outside supported scope"
   },
   {
+    "id": "oos_land_001",
     "query": "land dispute resolution law",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "medium",
+    "should_refuse": true,
+    "notes": "Land law outside supported scope"
   },
   {
+    "id": "oos_constitution_001",
     "query": "constitutional rights of citizens",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "medium",
+    "should_refuse": true,
+    "notes": "Constitutional law outside supported scope"
   },
   {
+    "id": "oos_bank_001",
     "query": "bank loan recovery rules",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "medium",
+    "should_refuse": true,
+    "notes": "Banking law outside supported scope"
   },
   {
+    "id": "oos_cyber_001",
     "query": "cyber crime law punishment",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "medium",
+    "should_refuse": true,
+    "notes": "Cyber crime outside supported scope"
   },
   {
+    "id": "oos_marriage_001",
     "query": "marriage registration process",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "medium",
+    "should_refuse": true,
+    "notes": "Marriage process outside supported scope"
   },
   {
+    "id": "oos_traffic_001",
     "query": "traffic rules fine",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "medium",
+    "should_refuse": true,
+    "notes": "Traffic law outside supported scope"
   },
-  
   {
+    "id": "pc_theft_pun_004",
     "query": "what punishment is given for theft?",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "379"
+    "expected_section": "379",
+    "category": "punishment",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 379"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Direct punishment question"
   },
   {
+    "id": "pc_theft_def_003",
     "query": "what is the legal meaning of theft?",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "378"
+    "expected_section": "378",
+    "category": "definition",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 378"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Legal wording for theft definition"
   },
   {
+    "id": "ca_consideration_def_003",
     "query": "in contract law, what do we mean by consideration?",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Definition with legal context wording"
   },
   {
+    "id": "ca_promise_concept_002",
     "query": "when an offer is accepted, what does it become?",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "concept",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "medium",
+    "should_refuse": false,
+    "notes": "Offer accepted becomes promise"
   },
-
   {
+    "id": "pc_theft_section_001",
     "query": "someone secretly took my wallet from my table, which law section is relevant?",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "378"
+    "expected_section": "378",
+    "category": "section_lookup",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 378"],
+    "difficulty": "hard",
+    "should_refuse": false,
+    "notes": "Scenario mapped to theft section"
   },
   {
+    "id": "pc_theft_concept_004",
     "query": "a person ran away with my mobile phone without permission, what law applies?",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "378"
+    "expected_section": "378",
+    "category": "concept",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 378"],
+    "difficulty": "hard",
+    "should_refuse": false,
+    "notes": "Scenario-based law applicability"
   },
   {
+    "id": "ca_promise_concept_003",
     "query": "if a shopkeeper offers goods and I agree to buy, what is that called in contract law?",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "concept",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "hard",
+    "should_refuse": false,
+    "notes": "Applied concept query in plain language"
   },
   {
+    "id": "ca_promisor_def_002",
     "query": "in a contract, what do we call the person who makes the proposal?",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "medium",
+    "should_refuse": false,
+    "notes": "Promisor role identification"
   },
-
   {
+    "id": "oos_cyber_002",
     "query": "someone hacked my facebook account, what is the punishment?",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "hard",
+    "should_refuse": true,
+    "notes": "Cyber account hacking outside supported scope"
   },
   {
+    "id": "oos_landlord_001",
     "query": "my landlord is not returning my deposit, what law applies?",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "hard",
+    "should_refuse": true,
+    "notes": "Landlord-tenant issue outside supported scope"
   },
   {
+    "id": "oos_cheque_001",
     "query": "is cheque dishonour covered here?",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "medium",
+    "should_refuse": true,
+    "notes": "Cheque dishonour outside supported scope"
   },
   {
+    "id": "oos_cyber_003",
     "query": "what is the punishment for cyber theft?",
-    "expected_status": "refused"
+    "expected_status": "refused",
+    "category": "out_of_scope",
+    "law": "none",
+    "expected_sections": [],
+    "difficulty": "hard",
+    "should_refuse": true,
+    "notes": "Cyber theft unsupported by current law set"
   },
-
-{
-  "query": "which section defines theft?",
-  "expected_status": "ok",
-  "expected_law": "penal_code",
-  "expected_section": "378"
-},
-{
+  {
+    "id": "pc_theft_section_002",
+    "query": "which section defines theft?",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "378",
+    "category": "section_lookup",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 378"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Direct section lookup for theft definition"
+  },
+  {
+    "id": "pc_theft_section_003",
     "query": "which section explains theft itself, not the penalty?",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "378"
+    "expected_section": "378",
+    "category": "section_lookup",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 378"],
+    "difficulty": "medium",
+    "should_refuse": false,
+    "notes": "Must distinguish definition from punishment"
   },
   {
+    "id": "pc_theft_section_004",
     "query": "which section gives the penalty for committing theft?",
     "expected_status": "ok",
     "expected_law": "penal_code",
-    "expected_section": "379"
+    "expected_section": "379",
+    "category": "section_lookup",
+    "law": "penal_code",
+    "expected_sections": ["Penal Code 379"],
+    "difficulty": "medium",
+    "should_refuse": false,
+    "notes": "Penalty section lookup"
   },
   {
+    "id": "ca_promise_concept_004",
     "query": "does accepted proposal become promise under the contract act?",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "concept",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "medium",
+    "should_refuse": false,
+    "notes": "Checks proposal to promise relation"
   },
   {
+    "id": "ca_agreement_def_002",
     "query": "what is the meaning of agreement under the contract act?",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Agreement definition with act mention"
   },
   {
+    "id": "ca_promisee_def_002",
     "query": "who is called the promisee in contract law?",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Promisee role definition"
   },
   {
+    "id": "ca_promisor_def_003",
     "query": "who is called the promisor in contract law?",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Promisor role definition"
   },
   {
+    "id": "ca_acceptance_def_003",
     "query": "what is the meaning of acceptance in the contract act?",
     "expected_status": "ok",
     "expected_law": "contract_act",
-    "expected_section": "2"
+    "expected_section": "2",
+    "category": "definition",
+    "law": "contract_act",
+    "expected_sections": ["Contract Act 2"],
+    "difficulty": "easy",
+    "should_refuse": false,
+    "notes": "Acceptance definition with act mention"
   }
-
 ]

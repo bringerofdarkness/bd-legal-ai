@@ -90,6 +90,19 @@ def main():
 
     results = [evaluate_case(case) for case in cases]
 
+    category_totals = Counter(case.get("category", "unknown") for case in cases)
+    category_passed = Counter(
+        case.get("category", "unknown")
+        for case, result in zip(cases, results)
+        if result["pass"]
+    )
+
+    law_totals = Counter(case.get("law", "unknown") for case in cases)
+    law_passed = Counter(
+        case.get("law", "unknown")
+        for case, result in zip(cases, results)
+        if result["pass"]
+    )
     total = len(results)
     passed = sum(r["pass"] for r in results)
     failed = total - passed
@@ -99,6 +112,14 @@ def main():
     print(f"Passed: {passed}")
     print(f"Failed: {failed}")
     print(f"Score:  {passed}/{total}")
+
+    print("\n=== Category Breakdown ===")
+    for category in category_totals:
+        print(f"{category}: {category_passed[category]}/{category_totals[category]}")
+
+    print("\n=== Law Breakdown ===")
+    for law in law_totals:
+        print(f"{law}: {law_passed[law]}/{law_totals[law]}")
 
     if passed < total:
         exit(1)
@@ -130,8 +151,27 @@ def main():
     if not any_failed:
         print("No failed cases.")
 
+        category_summary = {
+        k: f"{category_passed[k]}/{category_totals[k]}"
+        for k in category_totals
+    }
+
+    law_summary = {
+        k: f"{law_passed[k]}/{law_totals[k]}"
+        for k in law_totals
+    }
+
+    final_output = {
+        "total": total,
+        "passed": passed,
+        "failed": failed,
+        "category_breakdown": category_summary,
+        "law_breakdown": law_summary,
+        "results": results
+    }
+
     with open("docs/eval_results.json", "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2, ensure_ascii=False)
+        json.dump(final_output, f, indent=2, ensure_ascii=False)
 
     print("\nSaved detailed results to eval_results.json")
 
