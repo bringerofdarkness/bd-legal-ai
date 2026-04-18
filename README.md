@@ -1,4 +1,6 @@
-# Bangladesh Legal AI Assistant
+![CI](https://github.com/bringerofdarkness/bd-legal-ai/actions/workflows/eval.yml/badge.svg)
+
+#  Bangladesh Legal AI Assistant
 
 RAG-based legal assistant for Bangladesh law with citation-grounded answers using hybrid retrieval (Chroma + BM25).
 Built with hybrid retrieval (Chroma + BM25), Streamlit, Docker, and Hugging Face Spaces/Datasets.
