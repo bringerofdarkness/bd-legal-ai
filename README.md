@@ -1,9 +1,9 @@
 ![CI](https://github.com/bringerofdarkness/bd-legal-ai/actions/workflows/eval.yml/badge.svg)
 
-#  Bangladesh Legal AI Assistant
+# Bangladesh Legal AI Assistant
 
-RAG-based legal assistant for Bangladesh law with citation-grounded answers using hybrid retrieval (Chroma + BM25).
-Built with hybrid retrieval (Chroma + BM25), Streamlit, Docker, and Hugging Face Spaces/Datasets.
+RAG-based legal assistant for Bangladesh law with citation-grounded answers using hybrid retrieval (Chroma + BM25).  
+Built with hybrid retrieval, Streamlit, Docker, and Hugging Face Spaces/Datasets.
 
 ## Live Demo
 [Hugging Face Space](https://huggingface.co/spaces/bringerofdarkness/bd-legal-ai)
@@ -17,16 +17,17 @@ Built with hybrid retrieval (Chroma + BM25), Streamlit, Docker, and Hugging Face
 ![Answer](assets/questionAns.png)
 
 ## Features
-- legal question answering
-- law-aware retrieval
-- citation-grounded responses
-- hybrid retrieval (vector + keyword)
-- deployed with Docker
-- remote DB loading from Hugging Face Dataset
-  
+- Legal question answering
+- Law-aware retrieval
+- Citation-grounded responses
+- Hybrid retrieval (vector + keyword)
+- Docker-based deployment
+- Remote vector DB loading from Hugging Face Dataset
+- Evaluation pipeline with automated CI checks
+
 ## Demo Note
 This is a public demo deployment. The system downloads its knowledge base at runtime and currently supports selected laws only.  
-This tool is for educational purposes and does not provide legal advice.
+This project is for educational and portfolio purposes and does not provide legal advice.
 
 ## Current Law Coverage
 - The Penal Code, 1860
@@ -41,75 +42,42 @@ This tool is for educational purposes and does not provide legal advice.
 - LangChain
 - Docker
 - Hugging Face Spaces / Datasets
+- GitHub Actions
 
 ## System Architecture
-User → Streamlit UI → retrieval pipeline → Chroma + BM25 → answer + citations
+User → Streamlit UI → Retrieval pipeline → Chroma + BM25 → Answer generation + citations
 
 ## Evaluation
 
 The system is evaluated using a custom test set of legal queries covering:
 
-- Definition queries (e.g., "define theft")
-- Punishment queries (e.g., "punishment for theft")
-- Conceptual legal reasoning (Contract Act)
-- Out-of-scope detection (e.g., cybercrime)
+- Definition queries (for example, `define theft`)
+- Punishment queries (for example, `punishment for theft`)
+- Contract Act concept queries
+- Out-of-scope refusal cases (for example, cybercrime-related queries)
 
 ### Results
-
 - Total queries: 50
 - Accuracy: 100% (50/50)
 - Error breakdown: None
 
 ### Evaluation Features
-
 - Checks for:
-  - Response status (ok / refused)
+  - Response status (`ok` / `refused`)
   - Correct law identification
   - Correct section retrieval
 - Provides structured error categorization:
   - `status_error`
   - `law_error`
-  
+  - `section_error`
+
 ### Current Evaluation Score
 - Accuracy: **50/50 (100%)**
-- Evaluated on curated legal queries (definition, punishment, refusal cases)
-- CI automatically validates results on every push
-  
-### Reproducibility
+- Evaluated on curated legal queries across retrieval, routing, and refusal behavior
+- CI automatically validates evaluation results on every push
 
+### Reproducibility
 Run evaluation locally:
 
 ```bash
 python run_eval.py
-
-## Repository Structure
-- `app/streamlit_app.py` — UI
-- `app/rag_backend.py` — retrieval and answer generation
-- `app/law_registry.py` — law config
-- `ingestion/` — ingestion notebooks
-- `docs/` — project notes and evaluation artifacts
-
-## Deployment Notes
-This public deployment downloads the vector database from a Hugging Face Dataset at startup.
-
-## Limitations
-- currently supports only selected laws
-- still a demo / portfolio prototype
-- not legal advice
-
-## Roadmap
-- FastAPI backend for production architecture
-- Improved answer formatting and UX
-- Additional law coverage
-- Evaluation and benchmarking improvements
-```
-## Author
-
-Shahrul Zakaria  
-https://github.com/bringerofdarkness
-
-## Local Run
-```bash
-docker build -t bd-legal-ai .
-docker run -p 8501:8501 bd-legal-ai
-
