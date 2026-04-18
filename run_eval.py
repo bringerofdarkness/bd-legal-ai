@@ -1,5 +1,7 @@
 import json
-from rag_backend import answer_query
+from collections import Counter
+from unittest import result
+from app.rag_backend import answer_query
 
 
 def detect_law_and_section(resp):
@@ -19,6 +21,18 @@ def detect_law_and_section(resp):
 
     return law, section
 
+def get_top_evidence(resp):
+    evidence = resp.get("evidence", [])
+    if not evidence:
+        return None
+
+    top = evidence[0]
+    return {
+        "act": top.get("act"),
+        "section": top.get("section"),
+        "text": top.get("text"),
+    }
+
 
 def evaluate_case(case):
     query = case["query"]
@@ -28,6 +42,7 @@ def evaluate_case(case):
 
     actual_status = resp.get("status")
     actual_law, actual_section = detect_law_and_section(resp)
+    top_evidence = get_top_evidence(resp)
 
     result = {
         "query": query,
@@ -40,6 +55,7 @@ def evaluate_case(case):
         "expected_section": case.get("expected_section"),
         "actual_section": actual_section,
         "section_match": True,
+        "top_evidence": top_evidence,
     }
 
     if "expected_law" in case:
@@ -54,11 +70,22 @@ def evaluate_case(case):
         and result["section_match"]
     )
 
+    error_type = None
+
+    if not result["status_match"]:
+         error_type = "status_error"
+    elif not result["law_match"]:
+        error_type = "law_error"
+    elif not result["section_match"]:
+        error_type = "section_error"
+
+    result["error_type"] = error_type
+
     return result
 
 
 def main():
-    with open("eval_queries.json", "r", encoding="utf-8") as f:
+    with open("docs/eval_queries.json", "r", encoding="utf-8") as f:
         cases = json.load(f)
 
     results = [evaluate_case(case) for case in cases]
@@ -73,6 +100,15 @@ def main():
     print(f"Failed: {failed}")
     print(f"Score:  {passed}/{total}")
 
+    error_counts = Counter(r["error_type"] for r in results if not r["pass"])
+
+    print("\n=== Error Breakdown ===")
+    if error_counts:
+        for k, v in error_counts.items():
+            print(f"{k}: {v}")
+    else:
+        print("No errors.")
+
     print("\n=== Failed Cases ===")
     any_failed = False
     for r in results:
@@ -86,11 +122,12 @@ def main():
             print("Actual law:     ", r["actual_law"])
             print("Expected sec:   ", r["expected_section"])
             print("Actual sec:     ", r["actual_section"])
+            print("Top evidence:   ", r["top_evidence"])
 
     if not any_failed:
         print("No failed cases.")
 
-    with open("eval_results.json", "w", encoding="utf-8") as f:
+    with open("docs/eval_results.json", "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
 
     print("\nSaved detailed results to eval_results.json")

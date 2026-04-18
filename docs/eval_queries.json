@@ -160,5 +160,122 @@
   {
     "query": "traffic rules fine",
     "expected_status": "refused"
+  },
+  
+  {
+    "query": "what punishment is given for theft?",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "379"
+  },
+  {
+    "query": "what is the legal meaning of theft?",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "378"
+  },
+  {
+    "query": "in contract law, what do we mean by consideration?",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "when an offer is accepted, what does it become?",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+
+  {
+    "query": "someone secretly took my wallet from my table, which law section is relevant?",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "378"
+  },
+  {
+    "query": "a person ran away with my mobile phone without permission, what law applies?",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "378"
+  },
+  {
+    "query": "if a shopkeeper offers goods and I agree to buy, what is that called in contract law?",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "in a contract, what do we call the person who makes the proposal?",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+
+  {
+    "query": "someone hacked my facebook account, what is the punishment?",
+    "expected_status": "refused"
+  },
+  {
+    "query": "my landlord is not returning my deposit, what law applies?",
+    "expected_status": "refused"
+  },
+  {
+    "query": "is cheque dishonour covered here?",
+    "expected_status": "refused"
+  },
+  {
+    "query": "what is the punishment for cyber theft?",
+    "expected_status": "refused"
+  },
+
+{
+  "query": "which section defines theft?",
+  "expected_status": "ok",
+  "expected_law": "penal_code",
+  "expected_section": "378"
+},
+{
+    "query": "which section explains theft itself, not the penalty?",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "378"
+  },
+  {
+    "query": "which section gives the penalty for committing theft?",
+    "expected_status": "ok",
+    "expected_law": "penal_code",
+    "expected_section": "379"
+  },
+  {
+    "query": "does accepted proposal become promise under the contract act?",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "what is the meaning of agreement under the contract act?",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "who is called the promisee in contract law?",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "who is called the promisor in contract law?",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
+  },
+  {
+    "query": "what is the meaning of acceptance in the contract act?",
+    "expected_status": "ok",
+    "expected_law": "contract_act",
+    "expected_section": "2"
   }
+
 ]

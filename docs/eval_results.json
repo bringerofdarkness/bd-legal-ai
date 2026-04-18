@@ -10,7 +10,13 @@
     "expected_section": "378",
     "actual_section": "378",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 378,
+      "text": "property in order to such taking, is said to commit theft.\n\n04/03/2026 The Penal Code, 1860 Explanation"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "define theft",
@@ -23,7 +29,13 @@
     "expected_section": "378",
     "actual_section": "378",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 378,
+      "text": "property in order to such taking, is said to commit theft.\n\n04/03/2026 The Penal Code, 1860 Explanation"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "punishment for theft",
@@ -36,7 +48,13 @@
     "expected_section": "379",
     "actual_section": "379",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 379,
+      "text": "description for a term which may extend to three years, or with fine, or with\nboth.\nhouse, etc."
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "penalty for theft",
@@ -49,7 +67,13 @@
     "expected_section": "379",
     "actual_section": "379",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 379,
+      "text": "description for a term which may extend to three years, or with fine, or with\nboth.\nhouse, etc."
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "someone stole my phone",
@@ -62,7 +86,13 @@
     "expected_section": "378",
     "actual_section": "378",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 378,
+      "text": "property in order to such taking, is said to commit theft.\n\n04/03/2026 The Penal Code, 1860 Explanation"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "my mobile was stolen",
@@ -75,7 +105,13 @@
     "expected_section": "378",
     "actual_section": "378",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 378,
+      "text": "property in order to such taking, is said to commit theft.\n\n04/03/2026 The Penal Code, 1860 Explanation"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "he took my bag",
@@ -88,7 +124,13 @@
     "expected_section": "378",
     "actual_section": "378",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 378,
+      "text": "property in order to such taking, is said to commit theft.\n\n04/03/2026 The Penal Code, 1860 Explanation"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "what happens if someone steals",
@@ -101,7 +143,13 @@
     "expected_section": "379",
     "actual_section": "379",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 379,
+      "text": "description for a term which may extend to three years, or with fine, or with\nboth.\nhouse, etc."
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "what is proposal?",
@@ -114,7 +162,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "define proposal",
@@ -127,7 +181,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "what is acceptance",
@@ -140,7 +200,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "define acceptance",
@@ -153,7 +219,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "what is promise",
@@ -166,7 +238,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "define promise",
@@ -179,7 +257,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "when proposal is accepted what does it become",
@@ -192,7 +276,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "what is promisor",
@@ -205,7 +295,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "what is promisee",
@@ -218,7 +314,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "meaning of agreement in contract law",
@@ -231,7 +333,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "what is contract",
@@ -244,7 +352,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "what is consideration",
@@ -257,7 +371,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "define consideration",
@@ -270,7 +390,13 @@
     "expected_section": "2",
     "actual_section": "2",
     "section_match": true,
-    "pass": true
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "company tax filing process",
@@ -283,7 +409,9 @@
     "expected_section": null,
     "actual_section": null,
     "section_match": true,
-    "pass": true
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "how to file income tax return",
@@ -296,7 +424,9 @@
     "expected_section": null,
     "actual_section": null,
     "section_match": true,
-    "pass": true
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "divorce procedure in bangladesh",
@@ -309,7 +439,9 @@
     "expected_section": null,
     "actual_section": null,
     "section_match": true,
-    "pass": true
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "land dispute resolution law",
@@ -322,7 +454,9 @@
     "expected_section": null,
     "actual_section": null,
     "section_match": true,
-    "pass": true
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "constitutional rights of citizens",
@@ -335,7 +469,9 @@
     "expected_section": null,
     "actual_section": null,
     "section_match": true,
-    "pass": true
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "bank loan recovery rules",
@@ -348,7 +484,9 @@
     "expected_section": null,
     "actual_section": null,
     "section_match": true,
-    "pass": true
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "cyber crime law punishment",
@@ -361,7 +499,9 @@
     "expected_section": null,
     "actual_section": null,
     "section_match": true,
-    "pass": true
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "marriage registration process",
@@ -374,7 +514,9 @@
     "expected_section": null,
     "actual_section": null,
     "section_match": true,
-    "pass": true
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
   },
   {
     "query": "traffic rules fine",
@@ -387,6 +529,372 @@
     "expected_section": null,
     "actual_section": null,
     "section_match": true,
-    "pass": true
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "what punishment is given for theft?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "penal_code",
+    "actual_law": "penal_code",
+    "law_match": true,
+    "expected_section": "379",
+    "actual_section": "379",
+    "section_match": true,
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 379,
+      "text": "description for a term which may extend to three years, or with fine, or with\nboth.\nhouse, etc."
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "what is the legal meaning of theft?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "penal_code",
+    "actual_law": "penal_code",
+    "law_match": true,
+    "expected_section": "378",
+    "actual_section": "378",
+    "section_match": true,
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 378,
+      "text": "property in order to such taking, is said to commit theft.\n\n04/03/2026 The Penal Code, 1860 Explanation"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "in contract law, what do we mean by consideration?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "contract_act",
+    "actual_law": "contract_act",
+    "law_match": true,
+    "expected_section": "2",
+    "actual_section": "2",
+    "section_match": true,
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "when an offer is accepted, what does it become?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "contract_act",
+    "actual_law": "contract_act",
+    "law_match": true,
+    "expected_section": "2",
+    "actual_section": "2",
+    "section_match": true,
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "someone secretly took my wallet from my table, which law section is relevant?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "penal_code",
+    "actual_law": "penal_code",
+    "law_match": true,
+    "expected_section": "378",
+    "actual_section": "378",
+    "section_match": true,
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 378,
+      "text": "property in order to such taking, is said to commit theft.\n\n04/03/2026 The Penal Code, 1860 Explanation"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "a person ran away with my mobile phone without permission, what law applies?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "penal_code",
+    "actual_law": "penal_code",
+    "law_match": true,
+    "expected_section": "378",
+    "actual_section": "378",
+    "section_match": true,
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 378,
+      "text": "property in order to such taking, is said to commit theft.\n\n04/03/2026 The Penal Code, 1860 Explanation"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "if a shopkeeper offers goods and I agree to buy, what is that called in contract law?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "contract_act",
+    "actual_law": "contract_act",
+    "law_match": true,
+    "expected_section": "2",
+    "actual_section": "2",
+    "section_match": true,
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "in a contract, what do we call the person who makes the proposal?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "contract_act",
+    "actual_law": "contract_act",
+    "law_match": true,
+    "expected_section": "2",
+    "actual_section": "2",
+    "section_match": true,
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "someone hacked my facebook account, what is the punishment?",
+    "expected_status": "refused",
+    "actual_status": "refused",
+    "status_match": true,
+    "expected_law": null,
+    "actual_law": null,
+    "law_match": true,
+    "expected_section": null,
+    "actual_section": null,
+    "section_match": true,
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "my landlord is not returning my deposit, what law applies?",
+    "expected_status": "refused",
+    "actual_status": "refused",
+    "status_match": true,
+    "expected_law": null,
+    "actual_law": null,
+    "law_match": true,
+    "expected_section": null,
+    "actual_section": null,
+    "section_match": true,
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "is cheque dishonour covered here?",
+    "expected_status": "refused",
+    "actual_status": "refused",
+    "status_match": true,
+    "expected_law": null,
+    "actual_law": null,
+    "law_match": true,
+    "expected_section": null,
+    "actual_section": null,
+    "section_match": true,
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "what is the punishment for cyber theft?",
+    "expected_status": "refused",
+    "actual_status": "refused",
+    "status_match": true,
+    "expected_law": null,
+    "actual_law": null,
+    "law_match": true,
+    "expected_section": null,
+    "actual_section": null,
+    "section_match": true,
+    "top_evidence": null,
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "which section defines theft?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "penal_code",
+    "actual_law": "penal_code",
+    "law_match": true,
+    "expected_section": "378",
+    "actual_section": "378",
+    "section_match": true,
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 378,
+      "text": "property in order to such taking, is said to commit theft.\n\n04/03/2026 The Penal Code, 1860 Explanation"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "which section explains theft itself, not the penalty?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "penal_code",
+    "actual_law": "penal_code",
+    "law_match": true,
+    "expected_section": "378",
+    "actual_section": "378",
+    "section_match": true,
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 378,
+      "text": "property in order to such taking, is said to commit theft.\n\n04/03/2026 The Penal Code, 1860 Explanation"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "which section gives the penalty for committing theft?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "penal_code",
+    "actual_law": "penal_code",
+    "law_match": true,
+    "expected_section": "379",
+    "actual_section": "379",
+    "section_match": true,
+    "top_evidence": {
+      "act": "The Penal Code, 1860",
+      "section": 379,
+      "text": "description for a term which may extend to three years, or with fine, or with\nboth.\nhouse, etc."
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "does accepted proposal become promise under the contract act?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "contract_act",
+    "actual_law": "contract_act",
+    "law_match": true,
+    "expected_section": "2",
+    "actual_section": "2",
+    "section_match": true,
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "what is the meaning of agreement under the contract act?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "contract_act",
+    "actual_law": "contract_act",
+    "law_match": true,
+    "expected_section": "2",
+    "actual_section": "2",
+    "section_match": true,
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "who is called the promisee in contract law?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "contract_act",
+    "actual_law": "contract_act",
+    "law_match": true,
+    "expected_section": "2",
+    "actual_section": "2",
+    "section_match": true,
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "who is called the promisor in contract law?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "contract_act",
+    "actual_law": "contract_act",
+    "law_match": true,
+    "expected_section": "2",
+    "actual_section": "2",
+    "section_match": true,
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
+  },
+  {
+    "query": "what is the meaning of acceptance in the contract act?",
+    "expected_status": "ok",
+    "actual_status": "ok",
+    "status_match": true,
+    "expected_law": "contract_act",
+    "actual_law": "contract_act",
+    "law_match": true,
+    "expected_section": "2",
+    "actual_section": "2",
+    "section_match": true,
+    "top_evidence": {
+      "act": "Contract Act, 1872",
+      "section": 2,
+      "text": "senses, unless a contrary intention appears from the context:-\n(a) When one person signifies to another his willingness to do or to abstain\nfrom doing anything, with a view to obtaining the assent of that other to such\nact or abstinence, he is said to make a proposal:\n(b) When the person to whom the proposal is made signifies his assent\nthereto, the proposal is said to be accepted. A proposal, when accepted\nbecomes a promise:\n\nOF THE COMMUNICATION, ACCEPTANCE AND REVOCATION OF PROPOSALS\n(c) The person making the proposal is called the \"promisor\" and the person\naccepting the proposal is called the \"promisee\":\n(d) When, at the desire of the promisor, the promisee or any other person\nhas done or abstained from doing, or does or abstains from doing, or\npromises to do or to abstain from doing, something, such act or abstinence\nor promise is called a consideration for the promise:\n(e) Every promise and every set of promises, forming the consideration for\neach other, is an agreement:\n(f) Promises which form the consideration or part of the consideration for\neach other are called reciprocal promises:\n(g) An agreement not enforceable by law is said to be void:\n(h) An agreement enforceable by law is a contract:\n(i) An agreement which is enforceable by law at the option of one or more of\nthe parties thereto, but not at the option of the other or others, is a voidable\ncontract:\n(j) A contract which ceases to be enforceable by law becomes void when it\nceases to be enforceable.\nCommunication,"
+    },
+    "pass": true,
+    "error_type": null
   }
 ]

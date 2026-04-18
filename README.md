@@ -43,6 +43,39 @@ This tool is for educational purposes and does not provide legal advice.
 ## System Architecture
 User → Streamlit UI → retrieval pipeline → Chroma + BM25 → answer + citations
 
+## Evaluation
+
+The system is evaluated using a custom test set of legal queries covering:
+
+- Definition queries (e.g., "define theft")
+- Punishment queries (e.g., "punishment for theft")
+- Conceptual legal reasoning (Contract Act)
+- Out-of-scope detection (e.g., cybercrime)
+
+### Results
+
+- Total queries: 50
+- Accuracy: 100% (50/50)
+- Error breakdown: None
+
+### Evaluation Features
+
+- Checks for:
+  - Response status (ok / refused)
+  - Correct law identification
+  - Correct section retrieval
+- Provides structured error categorization:
+  - `status_error`
+  - `law_error`
+  - `section_error`
+
+### Reproducibility
+
+Run evaluation locally:
+
+```bash
+python run_eval.py
+
 ## Repository Structure
 - `app/streamlit_app.py` — UI
 - `app/rag_backend.py` — retrieval and answer generation
@@ -74,7 +107,3 @@ https://github.com/bringerofdarkness
 docker build -t bd-legal-ai .
 docker run -p 8501:8501 bd-legal-ai
 
-## Author
-
-Shahrul Zakaria  
-https://github.com/bringerofdarkness
