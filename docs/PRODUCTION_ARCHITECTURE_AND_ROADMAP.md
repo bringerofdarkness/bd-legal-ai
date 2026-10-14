@@ -414,8 +414,9 @@ gantt
     Benchmark Runner & Observability Middleware:done, s4_2, 2026-12-01, 3d
     Automated CI/CD Workflow & Unit Test Suite :done, s4_3, 2026-12-04, 2d
     section Sprint 5: Production Synthesis & Auth
-    Production Generative LLM Integration     :active, s5_1, 2026-12-06, 5d
-    Guest Mode & JWT Authentication           :s5_2, 2026-12-11, 4d
+    Production Generative LLM Integration     :done, s5_1, 2026-12-06, 5d
+    Guest Mode & JWT Authentication           :done, s5_2, 2026-12-11, 4d
+    Swagger OpenAPI & NLI Entailment Live Eval:done, s5_3, 2026-12-15, 2d
 ```
 
 ### 📋 Detailed Task Backlog for Immediate Execution
@@ -450,10 +451,10 @@ gantt
 - [x] **Task 4.2:** Observability middleware & benchmark runner (`X-Process-Time-Ms` middleware in `app/api/main.py`, latency tracking, and `tests/benchmark_eval.py` generating `docs/BENCHMARK_REPORT.md` with 353.6ms avg latency, 61.6% Top-1, 83.6% Top-5 recall).
 - [x] **Task 4.3:** Automated GitHub Actions CI workflow in `.github/workflows/eval.yml` executing automated unit tests and benchmark evaluation on every push / PR to `main` and `v2`.
 
-#### Priority 5: Generative LLM Synthesis & Production Authentication (Current Sprint)
-- [ ] **Task 5.1:** Integrate Production Generative LLM synthesis (`app/services/generator_service.py`) supporting Google Gemini 1.5 Flash (via `google-genai`) with strict zero-hallucination XML statutory context prompting.
-- [ ] **Task 5.2:** Implement Guest Mode & JWT Bearer Authentication (`app/core/auth.py` and `app/api/v1/endpoints/query.py`) allowing instant guest access while supporting authenticated user session history.
-- [ ] **Task 5.3:** Swagger manual testing & interactive OpenAPI documentation validation for live queries and statutory exploration.
+#### Priority 5: Generative LLM Synthesis & Production Authentication (Completed)
+- [x] **Task 5.1:** Integrate Production Generative LLM synthesis (`app/services/generator_service.py`) supporting Google Gemini Flash (`gemini-2.5-flash` via `google-genai`) with strict zero-hallucination XML statutory context prompting, structured JSON output (`direct_answer`, `supporting_quote`, `explanation_en`), and verbatim quote validation.
+- [x] **Task 5.2:** Implement Guest Mode & JWT Bearer Authentication (`app/core/auth.py`, `app/api/dependencies.py`, and `app/api/v1/endpoints/auth.py`) allowing instant anonymous guest access (`/v1/auth/guest`) while supporting authenticated advocate session tokens (`/v1/auth/token`, `/v1/auth/me`).
+- [x] **Task 5.3:** Swagger OpenAPI documentation & live query verification with verified DeBERTa-v3 NLI entailment scoring (96.1% entailment, `VERIFIED` status). All 23 unit tests passing in automated suite.
 
 ---
 

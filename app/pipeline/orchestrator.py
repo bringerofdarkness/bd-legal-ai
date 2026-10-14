@@ -4,6 +4,7 @@ Coordinates AI query routing, PostgreSQL hybrid retrieval, NLI entailment guardr
 and deterministic ground-truth fallback across all 10 Bangladesh enactments.
 """
 
+import re
 from typing import Dict, Any, List, Optional
 from app.services.classifier_service import ClassifierService
 from app.services.retrieval_service import RetrievalService
@@ -76,25 +77,40 @@ class LegalRAGOrchestrator:
         act_name = top.get("act", "Bangladesh Law")
         sec_no = top.get("section", "")
 
-        # 5. Candidate Synthesis for Civic Accessibility
-        candidate_explanation = GeneratorService.get_simple_explanation(top, clean_q)
+        # 5. Production Generative Synthesis with Google Gemini Flash (Sprint 5)
+        synth = GeneratorService.synthesize_answer_with_llm(top, clean_q, intent)
+        direct_answer = synth.get("direct_answer", "").strip()
+        supporting_quote = synth.get("supporting_quote", "").strip()
+        explanation_en = synth.get("explanation_en", "").strip()
+        is_llm = synth.get("is_llm_generated", False)
 
-        # 6. Sprint 3 Guardrail: DeBERTa-v3 NLI Entailment Verification
+        # 6. Guardrail: Verified Statutory Quote Grounding & NLI Entailment (DeBERTa-v3)
+        raw_full_statute = (top.get("text", "") + " " + statutory_text).lower()
+        clean_full_statute = re.sub(r'[^a-z0-9]', '', raw_full_statute)
+        clean_quote = re.sub(r'[^a-z0-9]', '', supporting_quote.lower())
+
+        is_quote_verified = bool(clean_quote and clean_quote in clean_full_statute)
+
+        # Determine premise for NLI: use verified supporting quote if authentic, else statutory text
+        nli_premise = supporting_quote if is_quote_verified else statutory_text
+        nli_hypothesis = explanation_en or direct_answer
+
         nli_result = NLIValidatorService.validate_claim(
-            premise=statutory_text,
-            hypothesis=candidate_explanation or ""
+            premise=nli_premise,
+            hypothesis=nli_hypothesis
         )
 
         logger.info(
-            f"NLI Guardrail Result for Section {sec_no}: Verdict={nli_result.verdict} | "
-            f"Entailment={nli_result.entailment_score:.3f} | Contradiction={nli_result.contradiction_score:.3f}"
+            f"NLI Guardrail Result for Section {sec_no} (LLM={is_llm}, QuoteVerified={is_quote_verified}): "
+            f"Verdict={nli_result.verdict} | Entailment={nli_result.entailment_score:.3f} | "
+            f"Contradiction={nli_result.contradiction_score:.3f}"
         )
 
         # 7. Answer Construction with Deterministic Ground-Truth Fallback
-        if nli_result.is_entailed and candidate_explanation:
+        if nli_result.is_entailed and direct_answer:
             # Fully Verified: Explanation is mathematically entailed by statutory ground truth
             answer_text = (
-                f"{candidate_explanation}\n\n"
+                f"{direct_answer}\n\n"
                 f"**Statutory {label.title()} ({act_name}, Section {sec_no}):**\n\n"
                 f"{statutory_text}"
             )

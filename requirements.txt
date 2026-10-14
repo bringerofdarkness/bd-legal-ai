@@ -15,3 +15,7 @@ huggingface-hub
 langchain-huggingface
 psycopg[binary]>=3.2.0
 pgvector>=0.5.0
+python-dotenv>=1.0.0
+google-genai>=2.0.0
+pyjwt[crypto]>=2.8.0
+passlib[bcrypt]>=1.7.4

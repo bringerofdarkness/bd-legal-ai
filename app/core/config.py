@@ -4,8 +4,12 @@ Centralized environment variables, directory paths, and model parameters using P
 """
 
 import os
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel, Field
+from dotenv import load_dotenv
+
+# Load .env file automatically
+load_dotenv()
 
 
 class Settings(BaseModel):
@@ -33,6 +37,16 @@ class Settings(BaseModel):
 
     # Embedding Model Parameters
     EMBEDDING_MODEL_NAME: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+
+    # LLM Synthesis (Google Gemini Flash)
+    GEMINI_API_KEY: Optional[str] = os.getenv("GEMINI_API_KEY")
+    GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    SYNTHESIS_TEMPERATURE: float = 0.0
+
+    # Security & Authentication (JWT Bearer & Guest Mode)
+    JWT_SECRET_KEY: str = os.getenv("JWT_SECRET_KEY", "dev-insecure-secret-key-32-chars-long")
+    JWT_ALGORITHM: str = os.getenv("JWT_ALGORITHM", "HS256")
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "1440"))
 
     # Retrieval Defaults
     DEFAULT_RETRIEVAL_K: int = 6

@@ -1,14 +1,32 @@
-"""
-Generator and Evidence Formatting Service
-Formats clean statutory excerpts, builds verifiable citations, and attaches verified plain-text legal explanations
-across all 10 Bangladesh enactments.
-"""
-
+import os
 import re
+import json
 from typing import List, Dict, Any, Optional
+
+from app.core.config import settings
+from app.core.logging import get_logger
+
+logger = get_logger("app.services.generator")
+
+try:
+    from google import genai
+    from google.genai import types
+except ImportError:
+    genai = None
+    types = None
 
 
 class GeneratorService:
+    _genai_client: Optional[Any] = None
+
+    @classmethod
+    def get_llm_client(cls) -> Optional[Any]:
+        if cls._genai_client is None and genai is not None and settings.GEMINI_API_KEY:
+            try:
+                cls._genai_client = genai.Client(api_key=settings.GEMINI_API_KEY)
+            except Exception as e:
+                logger.error(f"Failed to initialize Google GenAI Client: {e}")
+        return cls._genai_client
     @staticmethod
     def select_top_bundle_item(
         bundle_sorted: List[Dict[str, Any]],
@@ -95,6 +113,100 @@ class GeneratorService:
             f"Under {act}, Section {sec} establishes the legal standard for '{clean_heading}'. "
             f"It governs the statutory definitions, rights, liabilities, or penalties applicable under Bangladesh law."
         )
+
+    @classmethod
+    def synthesize_answer_with_llm(
+        cls,
+        top: Dict[str, Any],
+        query: str,
+        intent: str
+    ) -> Dict[str, Any]:
+        """
+        Synthesizes a legally constrained, fluent answer using Gemini Flash with temperature=0.0.
+        Returns:
+            {
+                "direct_answer": str,
+                "supporting_quote": str,
+                "explanation_en": str,
+                "is_llm_generated": bool
+            }
+        """
+        fallback_exp = cls.get_simple_explanation(top, query)
+        client = cls.get_llm_client()
+        if client is None or not top:
+            return {
+                "direct_answer": fallback_exp or "",
+                "supporting_quote": top.get("heading") or "",
+                "explanation_en": fallback_exp or "",
+                "is_llm_generated": False,
+            }
+
+        act_name = top.get("act", "Bangladesh Law")
+        sec_no = top.get("section", "")
+        heading = top.get("heading", "")
+        clean_text = cls.format_display_text(top, query)
+
+        prompt = f"""You are the Official Bangladesh Legal AI Assistant.
+Analyze the provided statutory provision and answer the user's legal question accurately.
+
+<verified_legal_context>
+Act: {act_name}
+Section: {sec_no}
+Heading: {heading}
+Text:
+{clean_text}
+</verified_legal_context>
+
+User Query: "{query}"
+Query Intent: {intent}
+
+Strict Synthesis Rules:
+1. Grounding: Answer ONLY from facts and legal provisions directly stated in <verified_legal_context>. Do NOT extrapolate, speculate, or reference unmentioned sections.
+2. Language:
+   - If the user query is in Bengali, provide 'direct_answer' in natural, formal Bengali (বাংলা).
+   - If the user query is in English, provide 'direct_answer' in clear, professional English.
+3. Supporting Quote: In 'supporting_quote', copy an exact verbatim English sentence directly from the Text above that supports the answer.
+4. NLI Verification Statement: In 'explanation_en', write a concise 1-sentence English factual statement directly asserting the rule, liability, or penalty without conversational preamble or statutory section numbers (e.g. "Whoever commits theft shall be punished with imprisonment for a term which may extend to three years, or with fine, or with both.").
+
+Return a JSON object with this exact structure:
+{{
+  "direct_answer": "...",
+  "supporting_quote": "...",
+  "explanation_en": "..."
+}}
+"""
+
+        try:
+            model_name = settings.GEMINI_MODEL
+            resp = client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    response_mime_type="application/json",
+                    temperature=0.0
+                )
+            )
+            raw_text = resp.text.strip()
+            data = json.loads(raw_text)
+
+            direct_ans = data.get("direct_answer", "").strip()
+            sup_quote = data.get("supporting_quote", "").strip()
+            exp_en = data.get("explanation_en", "").strip()
+
+            return {
+                "direct_answer": direct_ans or fallback_exp or "",
+                "supporting_quote": sup_quote,
+                "explanation_en": exp_en or fallback_exp or "",
+                "is_llm_generated": True,
+            }
+        except Exception as e:
+            logger.warning(f"Gemini LLM generation failed or unavailable ({e}); utilizing fallback template.")
+            return {
+                "direct_answer": fallback_exp or "",
+                "supporting_quote": top.get("heading") or "",
+                "explanation_en": fallback_exp or "",
+                "is_llm_generated": False,
+            }
 
     @staticmethod
     def build_citations(top: Dict[str, Any], bundle_sorted: List[Dict[str, Any]]) -> List[str]:
