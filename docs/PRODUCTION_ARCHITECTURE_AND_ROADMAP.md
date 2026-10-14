@@ -397,12 +397,13 @@ gantt
     dateFormat  YYYY-MM-DD
     section Sprint 1: Decoupling & API
     Build FastAPI Backend & API Gateway       :done, s1_1, 2026-10-15, 5d
-    Remove Hardcoded Query Routing            :active, s1_2, 2026-10-20, 4d
-    Deploy PostgreSQL with pgvector schema     :s1_3, 2026-10-24, 5d
+    Remove Hardcoded Query Routing            :done, s1_2, 2026-10-20, 4d
+    Deploy PostgreSQL with pgvector schema    :done, s1_3, 2026-10-24, 5d
     section Sprint 2: Ingestion & Metadata
-    Build Universal State-Machine Parser      :s2_1, 2026-10-29, 6d
-    Parse & Index CrPC Schedule II (Bail DB)  :s2_2, 2026-11-04, 4d
-    Batch Ingestion of Top 25 Major Acts       :s2_3, 2026-11-08, 7d
+    Build Universal State-Machine Parser      :done, s2_1, 2026-10-29, 6d
+    Batch Ingestion of Top 10 Major Acts      :done, s2_2, 2026-11-04, 4d
+    Build PostgreSQL + pgvector Indexer       :active, s2_3, 2026-11-08, 5d
+    Parse & Index CrPC Schedule II (Bail DB)  :s2_4, 2026-11-13, 4d
     section Sprint 3: Verification & Guardrails
     Integrate ONNX Quantized NLI Validator    :s3_1, 2026-11-15, 5d
     Add BGE-M3 Multilingual Embedding Model   :s3_2, 2026-11-20, 4d
@@ -419,13 +420,17 @@ gantt
   - `POST /v1/query`: Core synchronous QA endpoint returning answer, structured citations, and evidence array.
   - `POST /v1/search`: Direct statutory retrieval endpoint returning raw sections with similarity scores.
   - `GET /health`: Healthcheck endpoint validating database and embedding model readiness.
+  - `GET /v1/statutes`: Statutory catalog and metadata discovery endpoint.
 - [x] **Task 1.2:** Eliminate hardcoded string checks in [app/rag_backend.py](file:///F:/Self%20Project/Bangladesh%20Legal%20AI/app/rag_backend.py). Replace `analyze_query()` heuristics with an extensible Pydantic-based intent classifier.
 - [x] **Task 1.3:** Setup local Docker Compose orchestrating `api` (FastAPI) and `ui` (Streamlit) services via `docker-compose.yml`.
+- [x] **Task 1.4:** Design Master **PostgreSQL + pgvector** schema in `db/schema.sql` with HNSW vector index (`vector(1024)`), GIN full-text `tsvector` indexes, relational metadata, and GraphRAG `section_relationships` junction table.
 
 #### Priority 2: Data Scaling & Universal Ingestion Engine
 - [x] **Task 2.1:** Convert ingestion logic into a reusable CLI script: `ingestion/universal_parser.py` (hierarchical Act -> Chapter -> Section -> Clause state machine).
 - [x] **Task 2.2:** Construct `ingestion/laws_manifest.json` cataloging initial 10 foundational acts and write automated HTML scraper (`ingestion/scraper.py`).
-- [ ] **Task 2.3:** Parse CrPC 1898 Schedule II into `crpc_schedule_lookup.json` to automate tagging of `is_bailable` and `is_cognizable` across criminal offences.
+- [x] **Task 2.3:** Ingest & parse top 10 foundational Bangladesh Acts (1,079 sections total across Penal Code, Contract Act, Evidence Act, CrPC, CPC, Cyber Security Act, etc.) into structured JSON in `data/parsed_acts/`.
+- [ ] **Task 2.4:** Build `ingestion/indexer.py` to batch insert parsed statutes into PostgreSQL with BGE-M3 embeddings and tsvector sparse index.
+- [ ] **Task 2.5:** Parse CrPC 1898 Schedule II into `crpc_schedule_lookup.json` to automate tagging of `is_bailable` and `is_cognizable` across criminal offences.
 
 #### Priority 3: Verification Guardrails & Zero-Hallucination
 - [ ] **Task 3.1:** Deploy ONNX-quantized `DeBERTa-v3` cross-encoder for post-generation entailment scoring.
@@ -441,3 +446,4 @@ gantt
 
 > **Maintained By:** Lead AI Architect & Systems Engineering Team  
 > **Last Updated:** October 2026 | Production Upgrade Release Track
+
