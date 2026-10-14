@@ -2,6 +2,8 @@ __pycache__/
 *.pyc
 .ipynb_checkpoints/
 .env
+venv/
+*.log
 
 # Local Chroma vector databases and binary dumps
 chroma_*/

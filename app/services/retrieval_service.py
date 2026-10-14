@@ -148,11 +148,14 @@ class RetrievalService:
                 rows = cur.fetchall()
 
                 # Semantic distance threshold: detect completely out-of-scope queries
-                if rows:
+                if rows and not target_section_no and not target_act_id:
                     top_dist = rows[0][11]
                     top_sparse = rows[0][12]
-                    if top_dist is not None and top_dist > 0.65 and top_sparse is None and not target_section_no:
-                        logger.info(f"Query rejected as out-of-scope (cosine distance {top_dist:.3f} > 0.65 with no keyword match).")
+                    # Dynamic threshold: cross-lingual (Bengali query against English statute) has higher cosine distance
+                    is_bengali = bool(re.search(r"[\u0980-\u09FF]", query))
+                    threshold = 0.85 if is_bengali else 0.70
+                    if top_dist is not None and top_dist > threshold and top_sparse is None:
+                        logger.info(f"Query rejected as out-of-scope (cosine distance {top_dist:.3f} > {threshold} with no keyword match).")
                         return []
 
                 for row in rows:

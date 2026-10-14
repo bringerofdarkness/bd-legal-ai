@@ -10,13 +10,13 @@
     "description": "General penal code for offenses, definitions, and punishments in Bangladesh."
   },
   {
-    "act_id": "24",
+    "act_id": "27",
     "slug": "evidence_act_1872",
     "title_en": "The Evidence Act, 1872",
     "title_bn": "সাক্ষ্য আইন, ১৮৭২",
     "year": 1872,
     "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-24.html",
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-27.html",
     "description": "Rules of evidence, admissibility, witness examination, and burden of proof in court proceedings."
   },
   {
@@ -40,13 +40,13 @@
     "description": "Civil relief governing recovery of possession of immovable property, injunctions, and declaratory decrees."
   },
   {
-    "act_id": "63",
+    "act_id": "41",
     "slug": "negotiable_instruments_act_1881",
     "title_en": "The Negotiable Instruments Act, 1881",
     "title_bn": "হস্তান্তরযোগ্য দলিল আইন, ১৮৮১",
     "year": 1881,
     "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-63.html",
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-41.html",
     "description": "Law governing promissory notes, bills of exchange, and cheque dishonor offenses under Section 138."
   },
   {
@@ -70,33 +70,33 @@
     "description": "Civil procedural code governing civil suits, property disputes, execution of decrees, and appeals."
   },
   {
-    "act_id": "305",
+    "act_id": "312",
     "slug": "muslim_family_laws_1961",
     "title_en": "The Muslim Family Laws Ordinance, 1961",
     "title_bn": "মুসলিম পারিবারিক আইন অধ্যাদেশ, ১৯৬১",
     "year": 1961,
     "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-305.html",
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-312.html",
     "description": "Family law governing Muslim succession, marriage registration, polygamy, dower, and divorce (talaq)."
   },
   {
-    "act_id": "802",
+    "act_id": "356",
     "slug": "nari_o_shishu_2000",
     "title_en": "Nari O Shishu Nirjatan Daman Ain, 2000",
     "title_bn": "নারী ও শিশু নির্যাতন দমন আইন, ২০০০",
     "year": 2000,
     "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-802.html",
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-356.html",
     "description": "Special criminal statute for prevention and suppression of offenses against women and children, dowry, and assault."
   },
   {
-    "act_id": "1457",
+    "act_id": "1282",
     "slug": "cyber_security_act_2023",
     "title_en": "Cyber Security Act, 2023",
     "title_bn": "সাইবার নিরাপত্তা আইন, ২০২৩",
     "year": 2023,
     "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-1457.html",
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-1282.html",
     "description": "Statute governing cyber offenses, hacking, identity theft, unauthorized data access, and digital forensic investigations."
   }
 ]

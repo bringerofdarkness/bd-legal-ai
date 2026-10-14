@@ -88,12 +88,20 @@ class ClassifierService:
         """
         q = query.lower().strip()
 
-        # 1. Exact alias / title matching
+        # 1. Exact alias / title matching (longest matches first to avoid subphrase collisions)
+        all_candidates = []
         for law_id, config in LAW_REGISTRY.items():
             for alias in config.aliases:
-                alias_l = alias.lower()
-                if len(alias_l) >= 4 and alias_l in q:
-                    return config.act_id
+                alias_l = alias.lower().strip()
+                if len(alias_l) >= 3:
+                    all_candidates.append((alias_l, config.act_id))
+
+        # Sort descending by length
+        all_candidates.sort(key=lambda x: len(x[0]), reverse=True)
+
+        for alias_l, act_id in all_candidates:
+            if alias_l in q:
+                return act_id
 
         # 2. Return None to allow global hybrid search across all 10 Acts
         return None
