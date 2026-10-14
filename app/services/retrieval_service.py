@@ -73,7 +73,18 @@ class RetrievalService:
             act_filter_clause = "AND s.act_id = %(act_id)s" if target_act_id else ""
 
             sql_hybrid = f"""
-            WITH dense_search AS (
+            WITH exact_search AS (
+                SELECT 
+                    s.section_id, s.act_id, a.title_en AS act_name, s.section_no, s.heading_en, 
+                    s.body_en, s.full_text_en, s.source_pdf, s.page_start, s.page_end,
+                    (s.embedding_en <=> %(q_emb)s::vector) AS cosine_distance,
+                    1 AS dense_rank
+                FROM sections s
+                JOIN acts a ON s.act_id = a.act_id
+                WHERE s.section_no = %(target_sec)s {act_filter_clause}
+                LIMIT 5
+            ),
+            dense_search AS (
                 SELECT 
                     s.section_id, s.act_id, a.title_en AS act_name, s.section_no, s.heading_en, 
                     s.body_en, s.full_text_en, s.source_pdf, s.page_start, s.page_end,
@@ -82,7 +93,7 @@ class RetrievalService:
                 FROM sections s
                 JOIN acts a ON s.act_id = a.act_id
                 WHERE s.embedding_en IS NOT NULL {act_filter_clause}
-                LIMIT 25
+                LIMIT 50
             ),
             sparse_search AS (
                 SELECT 
@@ -93,27 +104,38 @@ class RetrievalService:
                 WHERE s.search_vector_en @@ plainto_tsquery('english', %(q_text)s) {act_filter_clause}
                 LIMIT 25
             ),
+            combined_candidates AS (
+                SELECT section_id FROM exact_search
+                UNION
+                SELECT section_id FROM dense_search
+                UNION
+                SELECT section_id FROM sparse_search
+            ),
             hybrid_fused AS (
                 SELECT 
-                    COALESCE(d.section_id, sp.section_id) AS section_id,
-                    COALESCE(d.act_id, '') AS act_id,
-                    COALESCE(d.act_name, '') AS act_name,
-                    COALESCE(d.section_no, sp.section_no) AS section_no,
-                    COALESCE(d.heading_en, '') AS heading_en,
-                    COALESCE(d.body_en, '') AS body_en,
-                    COALESCE(d.full_text_en, '') AS full_text_en,
-                    COALESCE(d.source_pdf, '') AS source_pdf,
-                    d.page_start,
-                    d.page_end,
-                    d.cosine_distance,
+                    c.section_id,
+                    COALESCE(ex.act_id, d.act_id, s.act_id) AS act_id,
+                    COALESCE(ex.act_name, d.act_name, a.title_en) AS act_name,
+                    COALESCE(ex.section_no, d.section_no, s.section_no) AS section_no,
+                    COALESCE(ex.heading_en, d.heading_en, s.heading_en) AS heading_en,
+                    COALESCE(ex.body_en, d.body_en, s.body_en) AS body_en,
+                    COALESCE(ex.full_text_en, d.full_text_en, s.full_text_en) AS full_text_en,
+                    COALESCE(ex.source_pdf, d.source_pdf, s.source_pdf) AS source_pdf,
+                    COALESCE(ex.page_start, d.page_start, s.page_start) AS page_start,
+                    COALESCE(ex.page_end, d.page_end, s.page_end) AS page_end,
+                    COALESCE(ex.cosine_distance, d.cosine_distance) AS cosine_distance,
                     sp.sparse_rank,
                     (
                         COALESCE(1.0 / (60.0 + d.dense_rank), 0.0) + 
                         COALESCE(1.0 / (60.0 + sp.sparse_rank), 0.0) +
-                        (CASE WHEN COALESCE(d.section_no, sp.section_no) = %(target_sec)s THEN 2.0 ELSE 0.0 END)
+                        (CASE WHEN ex.section_id IS NOT NULL THEN 5.0 ELSE 0.0 END)
                     ) AS rrf_score
-                FROM dense_search d
-                FULL OUTER JOIN sparse_search sp ON d.section_id = sp.section_id
+                FROM combined_candidates c
+                LEFT JOIN exact_search ex ON c.section_id = ex.section_id
+                LEFT JOIN dense_search d ON c.section_id = d.section_id
+                LEFT JOIN sparse_search sp ON c.section_id = sp.section_id
+                JOIN sections s ON c.section_id = s.section_id
+                JOIN acts a ON s.act_id = a.act_id
             )
             SELECT section_id, act_id, act_name, section_no, heading_en, body_en, full_text_en, source_pdf, page_start, page_end, rrf_score, cosine_distance, sparse_rank
             FROM hybrid_fused
