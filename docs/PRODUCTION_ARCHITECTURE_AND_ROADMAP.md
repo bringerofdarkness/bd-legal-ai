@@ -404,8 +404,8 @@ gantt
     Batch Ingestion of Top 10 Major Acts      :done, s2_2, 2026-11-04, 4d
     Build PostgreSQL + pgvector Indexer       :done, s2_3, 2026-11-08, 5d
     Automated GraphRAG Link Extractor         :done, s2_4, 2026-11-10, 3d
-    Connect Retrieval Service to pgvector     :active, s2_5, 2026-11-13, 4d
-    Parse & Index CrPC Schedule II (Bail DB)  :s2_6, 2026-11-17, 4d
+    Connect Retrieval Service to pgvector     :done, s2_5, 2026-11-13, 4d
+    Parse & Index CrPC Schedule II (Bail DB)  :active, s2_6, 2026-11-17, 4d
     section Sprint 3: Verification & Guardrails
     Integrate ONNX Quantized NLI Validator    :s3_1, 2026-11-15, 5d
     Add BGE-M3 Multilingual Embedding Model   :s3_2, 2026-11-20, 4d
@@ -434,7 +434,7 @@ gantt
 - [x] **Task 2.4:** Build `ingestion/indexer.py` to batch insert parsed statutes into PostgreSQL with multilingual embeddings, tsvector sparse index, and GraphRAG links.
 - [x] **Task 2.5:** Replace hardcoded knowledge graph seed list with automated statutory syntax extractor in `ingestion/graph_extractor.py` (228 automated legal relationships discovered and indexed).
 - [x] **Task 2.6:** Create interactive database diagnostic and audit CLI in `scripts/inspect_db.py`.
-- [ ] **Task 2.7:** Connect `app/services/retrieval_service.py` directly to PostgreSQL + pgvector (Dense HNSW Vector + Sparse tsvector + RRF Rank Fusion + 1-hop GraphRAG Traversal).
+- [x] **Task 2.7:** Connect `app/services/retrieval_service.py` directly to PostgreSQL + pgvector (Dense HNSW Vector + Sparse tsvector + RRF Rank Fusion + 1-hop GraphRAG Traversal).
 - [ ] **Task 2.8:** Parse CrPC 1898 Schedule II into `crpc_schedule_lookup.json` to automate tagging of `is_bailable` and `is_cognizable` across criminal offences.
 
 #### Priority 3: Verification Guardrails & Zero-Hallucination
