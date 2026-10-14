@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: bd_legal_api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+    command: uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+
+  ui:
+    build: .
+    container_name: bd_legal_ui
+    ports:
+      - "8501:8501"
+    environment:
+      - PYTHONPATH=/app
+    command: streamlit run app/streamlit_app.py --server.port=8501 --server.address=0.0.0.0
+    depends_on:
+      - api
+    restart: unless-stopped
