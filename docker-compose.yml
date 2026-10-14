@@ -1,6 +1,25 @@
 version: '3.8'
 
 services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: bd_legal_pgvector
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: bd_legal_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/init.sql
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d bd_legal_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
   api:
     build: .
     container_name: bd_legal_api
@@ -8,7 +27,11 @@ services:
       - "8000:8000"
     environment:
       - PYTHONPATH=/app
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/bd_legal_db
     command: uvicorn app.api.main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      db:
+        condition: service_healthy
     restart: unless-stopped
 
   ui:
@@ -18,7 +41,10 @@ services:
       - "8501:8501"
     environment:
       - PYTHONPATH=/app
-    command: streamlit run app/streamlit_app.py --server.port=8501 --server.address=0.0.0.0
+    command: streamlit run ui/streamlit_app.py --server.port=8501 --server.address=0.0.0.0
     depends_on:
       - api
     restart: unless-stopped
+
+volumes:
+  pgdata:
