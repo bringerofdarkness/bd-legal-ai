@@ -185,11 +185,13 @@ class RetrievalService:
         falls back gracefully to local Chroma store if database is offline.
         """
         analysis = ClassifierService.analyze_query(query)
+        law_hint = analysis.get("law_hint")
         target_act_id = None
-        if analysis.get("law_hint") == "penal_code":
-            target_act_id = "11"
-        elif analysis.get("law_hint") == "contract_act":
-            target_act_id = "26"
+        if law_hint:
+            if law_hint in LAW_REGISTRY:
+                target_act_id = LAW_REGISTRY[law_hint].act_id
+            else:
+                target_act_id = str(law_hint)
 
         # 1. Attempt PostgreSQL Hybrid Retrieval (Bilingual + Full 10 Acts)
         pg_bundle = cls.query_pgvector_hybrid(query=query, top_k=k_final, target_act_id=target_act_id)

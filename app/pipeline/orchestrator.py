@@ -1,15 +1,17 @@
 """
 Legal RAG Pipeline Orchestrator (Facade Pattern)
-Coordinates classifier, retrieval, reranker, and generator services in a clean, decoupled workflow.
+Coordinates AI query routing, PostgreSQL hybrid retrieval, NLI entailment guardrails,
+and deterministic ground-truth fallback across all 10 Bangladesh enactments.
 """
 
 from typing import Dict, Any, List, Optional
 from app.services.classifier_service import ClassifierService
 from app.services.retrieval_service import RetrievalService
 from app.services.generator_service import GeneratorService
+from app.services.nli_validator_service import NLIValidatorService
 from app.core.logging import get_logger
 
-logger = get_logger(__name__)
+logger = get_logger("app.pipeline.orchestrator")
 
 
 def build_refusal_response(reason: str) -> Dict[str, Any]:
@@ -19,82 +21,102 @@ def build_refusal_response(reason: str) -> Dict[str, Any]:
         "citations": [],
         "evidence": [],
         "refusal_reason": reason,
+        "verification_verdict": "REFUSED",
+        "entailment_score": 0.0,
     }
 
 
 class LegalRAGOrchestrator:
     @classmethod
     def answer_query(cls, query: str, debug: bool = False) -> Dict[str, Any]:
-        query_type = ClassifierService.classify_query(query)
-        q = query.strip().lower()
-        analysis = ClassifierService.analyze_query(q)
+        """
+        End-to-End Zero-Hallucination Legal Question-Answering Pipeline:
+        1. AI Intent Classification & Section Extraction
+        2. Native PostgreSQL Hybrid Vector (HNSW) + Full-Text (tsvector) Search
+        3. 1-hop GraphRAG Legal Relationship Expansion
+        4. Cross-Encoder NLI Entailment Scoring (DeBERTa-v3)
+        5. Deterministic Ground-Truth Fallback if unentailed
+        """
+        clean_q = query.strip()
+        if len(clean_q) < 2:
+            return build_refusal_response("Query is too short.")
 
-        is_definition_query = query_type == "definition"
-        is_punishment_query = query_type == "punishment"
+        # 1. Analyze query intent and extract explicit section references
+        analysis = ClassifierService.analyze_query(clean_q)
+        intent = analysis["intent"]
+        explicit_section = analysis.get("section_no")
 
-        # 1. Out-of-scope Cyber Filter
-        if ClassifierService.is_cyber_query(q):
-            logger.info("Query refused: Out-of-scope cyber query.")
-            return build_refusal_response(
-                "Cyber-related offences are outside the scope of the currently indexed laws."
-            )
-
-        # 2. Scope Verification
-        if not ClassifierService.is_supported_scope(q, analysis):
-            logger.info("Query refused: Scope unsupported.")
-            return build_refusal_response(
-                "This version currently supports theft-related Penal Code questions "
-                "and Contract Act Section 2 concepts such as proposal, acceptance, "
-                "promise, promisor, promisee, agreement, contract, and consideration."
-            )
-
-        # 3. Active Law Resolution
-        active_law_id = analysis.get("law_hint") or ClassifierService.choose_active_law(query)
-        if active_law_id is None:
-            logger.info("Query refused: Active law undetermined.")
-            return build_refusal_response(
-                "Query is outside the scope of the currently indexed laws."
-            )
-
-        # 4. Hybrid Evidence Retrieval
-        bundle = RetrievalService.build_evidence_bundle(query, k_initial=15, k_final=5)
-        if not bundle:
-            logger.warning("No relevant evidence sections retrieved.")
-            return build_refusal_response("No relevant legal sections found.")
-
-        # 5. Top Bundle Item Selection
-        bundle_sorted = sorted(bundle, key=lambda x: x["score"])
-        top = GeneratorService.select_top_bundle_item(
-            bundle_sorted,
-            q,
-            is_definition_query,
-            is_punishment_query
+        logger.info(
+            f"Processing legal query: '{clean_q}' | Intent: {intent} | "
+            f"Section Mention: {explicit_section} | Law Hint: {analysis.get('law_hint')}"
         )
 
-        # 6. Statutory Text Formatting
-        display_text = GeneratorService.format_display_text(top, q, is_definition_query)
-        simple_explanation = GeneratorService.get_simple_explanation(top, q)
-        label = GeneratorService.get_answer_label(q)
-
-        # 7. Answer Construction
-        if simple_explanation:
-            answer_text = (
-                f"{simple_explanation}\n\n"
-                f"Legal text: According to {top['act']} Section {top['section']}, "
-                f"the relevant {label} is:\n\n{display_text}"
+        # 2. Hybrid Evidence Retrieval (Dense HNSW + Sparse tsvector + GraphRAG)
+        bundle = RetrievalService.build_evidence_bundle(clean_q, k_initial=15, k_final=5)
+        if not bundle:
+            logger.warning(f"No relevant statutory evidence retrieved for query: '{clean_q}'")
+            return build_refusal_response(
+                "No directly relevant statutory provisions found in the indexed Bangladesh laws."
             )
+
+        # 3. Top Provision Selection
+        top = GeneratorService.select_top_bundle_item(
+            bundle,
+            clean_q,
+            is_definition_query=(intent == "definition"),
+            is_punishment_query=(intent == "punishment"),
+            target_section_no=explicit_section,
+        )
+
+        # 4. Extract Statutory Ground Truth
+        statutory_text = GeneratorService.format_display_text(
+            top, clean_q, is_definition_query=(intent == "definition")
+        )
+        label = GeneratorService.get_answer_label(clean_q)
+        act_name = top.get("act", "Bangladesh Law")
+        sec_no = top.get("section", "")
+
+        # 5. Candidate Synthesis for Civic Accessibility
+        candidate_explanation = GeneratorService.get_simple_explanation(top, clean_q)
+
+        # 6. Sprint 3 Guardrail: DeBERTa-v3 NLI Entailment Verification
+        nli_result = NLIValidatorService.validate_claim(
+            premise=statutory_text,
+            hypothesis=candidate_explanation or ""
+        )
+
+        logger.info(
+            f"NLI Guardrail Result for Section {sec_no}: Verdict={nli_result.verdict} | "
+            f"Entailment={nli_result.entailment_score:.3f} | Contradiction={nli_result.contradiction_score:.3f}"
+        )
+
+        # 7. Answer Construction with Deterministic Ground-Truth Fallback
+        if nli_result.is_entailed and candidate_explanation:
+            # Fully Verified: Explanation is mathematically entailed by statutory ground truth
+            answer_text = (
+                f"{candidate_explanation}\n\n"
+                f"**Statutory {label.title()} ({act_name}, Section {sec_no}):**\n\n"
+                f"{statutory_text}"
+            )
+            verdict = "VERIFIED"
         else:
-            answer_text = (
-                f"According to {top['act']} Section {top['section']}, "
-                f"the relevant {label} is:\n\n{display_text}"
+            # Deterministic Fallback Activated: Serve official statute directly to eliminate hallucination
+            logger.warning(
+                f"Entailment score ({nli_result.entailment_score}) below threshold or contradicted. "
+                f"Triggering deterministic fallback to official statutory ground truth."
             )
+            answer_text = (
+                f"According to {act_name}, Section {sec_no}, the relevant {label} provides:\n\n"
+                f"{statutory_text}"
+            )
+            verdict = "GROUND_TRUTH_FALLBACK"
 
-        # 8. Citations & Evidence Ordering
-        citations = GeneratorService.build_citations(top, bundle_sorted)
-        ordered_evidence = GeneratorService.order_evidence(top, bundle_sorted)
+        # 8. Citations & Supporting Evidence Ordering
+        citations = GeneratorService.build_citations(top, bundle)
+        ordered_evidence = GeneratorService.order_evidence(top, bundle)
 
         if debug:
-            logger.debug(f"Query: {query} | Type: {query_type} | Section: {top['section']}")
+            logger.debug(f"Query: {clean_q} | Verdict: {verdict} | Top Section: {sec_no}")
 
         return {
             "status": "ok",
@@ -102,6 +124,8 @@ class LegalRAGOrchestrator:
             "citations": citations,
             "evidence": ordered_evidence,
             "refusal_reason": None,
+            "verification_verdict": verdict,
+            "entailment_score": nli_result.entailment_score,
         }
 
     @classmethod

@@ -37,6 +37,8 @@ class QueryResponse(BaseModel):
     citations: List[str] = Field(default_factory=list, description="Array of verifiable legal citations")
     evidence: List[EvidenceItem] = Field(default_factory=list, description="Retrieved statutory provisions")
     refusal_reason: Optional[str] = Field(None, description="Reason if query was out-of-scope or refused")
+    verification_verdict: Optional[str] = Field("VERIFIED", description="NLI verification verdict ('VERIFIED', 'GROUND_TRUTH_FALLBACK', 'REFUSED')")
+    entailment_score: Optional[float] = Field(None, description="DeBERTa-v3 NLI entailment probability [0.0 - 1.0]")
 
 
 class HealthResponse(BaseModel):

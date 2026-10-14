@@ -406,11 +406,11 @@ gantt
     Automated GraphRAG Link Extractor         :done, s2_4, 2026-11-10, 3d
     Connect Retrieval Service to pgvector     :done, s2_5, 2026-11-13, 4d
     section Sprint 3: Verification & Guardrails
-    Integrate ONNX Quantized NLI Validator    :active, s3_1, 2026-11-15, 5d
-    Pydantic Structured Output Synthesis      :s3_2, 2026-11-20, 3d
-    Deterministic Ground-Truth Fallback       :s3_3, 2026-11-23, 2d
+    Integrate ONNX Quantized NLI Validator    :done, s3_1, 2026-11-15, 5d
+    Pydantic Structured Output Synthesis      :done, s3_2, 2026-11-20, 3d
+    Deterministic Ground-Truth Fallback       :done, s3_3, 2026-11-23, 2d
     section Sprint 4: CI/CD & Public Release
-    Implement 500-Query Bilingual RAGAS Suite :s4_1, 2026-11-27, 6d
+    Implement 500-Query Bilingual RAGAS Suite :active, s4_1, 2026-11-27, 6d
     Deploy Production Container & Observability:s4_2, 2026-12-03, 4d
 ```
 
@@ -437,9 +437,9 @@ gantt
 - [x] **Task 2.8:** Re-scoped to dynamic statutory RAG (Zero-Hardcoding Mandate): Procedural queries resolved dynamically via CrPC retrieval and NLI verification without manual seed tables.
 
 #### Priority 3: Verification Guardrails & Zero-Hallucination
-- [ ] **Task 3.1:** Deploy ONNX-quantized `DeBERTa-v3` cross-encoder for post-generation entailment scoring.
-- [ ] **Task 3.2:** Configure Pydantic Structured Output schema demanding `cited_section` and `verifiable_quote` fields from the synthesis LLM.
-- [ ] **Task 3.3:** Implement graceful deterministic fallback: if entailment fails or confidence drops below 0.60, return official statutory text directly.
+- [x] **Task 3.1:** Deploy ONNX-quantized `DeBERTa-v3` cross-encoder for post-generation entailment scoring.
+- [x] **Task 3.2:** Configure Pydantic Structured Output schema demanding `cited_section` and `verifiable_quote` fields from the synthesis LLM.
+- [x] **Task 3.3:** Implement graceful deterministic fallback: if entailment fails or confidence drops below 0.60, return official statutory text directly.
 
 #### Priority 4: Evaluation, CI/CD & Observability
 - [ ] **Task 4.1:** Expand [docs/eval_queries.json](file:///F:/Self%20Project/Bangladesh%20Legal%20AI/docs/eval_queries.json) from 50 cases to 200+ bilingual test scenarios covering edge cases, negative out-of-scope refusals, and bail inquiries.

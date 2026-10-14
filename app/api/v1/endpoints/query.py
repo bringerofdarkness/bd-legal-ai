@@ -46,7 +46,9 @@ async def process_legal_query(
             answer_text=raw_resp.get("answer_text", ""),
             citations=raw_resp.get("citations", []),
             evidence=evidence_items,
-            refusal_reason=raw_resp.get("refusal_reason")
+            refusal_reason=raw_resp.get("refusal_reason"),
+            verification_verdict=raw_resp.get("verification_verdict", "VERIFIED"),
+            entailment_score=raw_resp.get("entailment_score"),
         )
     except Exception as e:
         logger.error(f"Error processing legal query: {str(e)}", exc_info=True)

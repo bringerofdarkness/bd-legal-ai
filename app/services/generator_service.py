@@ -1,6 +1,7 @@
 """
 Generator and Evidence Formatting Service
-Formats clean statutory excerpts, builds verifiable citations, and attaches verified plain-text legal explanations.
+Formats clean statutory excerpts, builds verifiable citations, and attaches verified plain-text legal explanations
+across all 10 Bangladesh enactments.
 """
 
 import re
@@ -12,145 +13,115 @@ class GeneratorService:
     def select_top_bundle_item(
         bundle_sorted: List[Dict[str, Any]],
         q: str,
-        is_definition_query: bool,
-        is_punishment_query: bool
+        is_definition_query: bool = False,
+        is_punishment_query: bool = False,
+        target_section_no: Optional[str] = None
     ) -> Dict[str, Any]:
+        """Selects the best statutory provision matching the user's intent and explicit section numbers."""
+        if not bundle_sorted:
+            return {}
+
+        # 1. If user explicitly specified a section number (e.g. 'section 302'), prioritize that section
+        if target_section_no:
+            for b in bundle_sorted:
+                if str(b.get("section", "")).upper() == target_section_no.upper():
+                    return b
+
+        # 2. If intent is punishment vs definition, check for penal or definitional relationship links
         top = bundle_sorted[0]
-        if "theft" in q:
-            if is_definition_query:
-                for b in bundle_sorted:
-                    if str(b["section"]) == "378":
-                        return b
-            elif is_punishment_query:
-                for b in bundle_sorted:
-                    if str(b["section"]) == "379":
-                        return b
+        if is_punishment_query:
+            for b in bundle_sorted:
+                heading = (b.get("heading") or "").lower()
+                text = (b.get("text") or "").lower()
+                if "punishment" in heading or "penalty" in heading or "punished with" in text:
+                    return b
+        elif is_definition_query:
+            for b in bundle_sorted:
+                heading = (b.get("heading") or "").lower()
+                text = (b.get("text") or "").lower()
+                if "is said to" in text or "means" in text or "defined" in heading:
+                    return b
+
         return top
 
     @staticmethod
     def get_answer_label(q: str) -> str:
-        if any(kw in q for kw in ["punish", "punishment", "penalty", "sentence", "fine", "imprisonment"]):
-            return "punishment"
-        elif any(kw in q for kw in ["define", "definition", "meaning", "what is", "what constitutes"]):
-            return "definition"
-        return "provision"
+        """Determines the legal classification label for the statutory excerpt."""
+        q_lower = q.lower()
+        if any(kw in q_lower for kw in ["punish", "punishment", "penalty", "sentence", "fine", "imprisonment", "শাস্তি"]):
+            return "punishment provision"
+        elif any(kw in q_lower for kw in ["define", "definition", "meaning", "what is", "what constitutes", "সংজ্ঞা"]):
+            return "statutory definition"
+        elif any(kw in q_lower for kw in ["bail", "bailable", "cognizable", "arrest", "জামিন"]):
+            return "procedural rule"
+        return "statutory provision"
 
     @classmethod
-    def format_display_text(cls, top: Dict[str, Any], q: str, is_definition_query: bool) -> str:
-        display_text = top["text"]
+    def format_display_text(cls, top: Dict[str, Any], q: str, is_definition_query: bool = False) -> str:
+        """Cleans and standardizes raw statutory text for user display."""
+        raw_text = top.get("text") or ""
 
-        # Contract Act Section 2 clause parsing
-        if top["act"] == "Contract Act, 1872" and top["section"] == 2:
-            clause_letter = None
-            if is_definition_query and ("accept" in q and "become" in q):
-                clause_letter = "b"
-            elif is_definition_query and "acceptance" in q:
-                clause_letter = "b"
-            elif (is_definition_query and "promisee" in q) or ("promisor" in q):
-                clause_letter = "c"
-            elif "promise" in q:
-                clause_letter = "b"
-            elif "proposal" in q:
-                clause_letter = "a"
-            elif "consideration" in q:
-                clause_letter = "d"
-            elif "agreement" in q and "void" not in q and "contract" not in q:
-                clause_letter = "e"
-            elif "void agreement" in q or ("void" in q and "agreement" in q):
-                clause_letter = "g"
-            elif "contract" in q:
-                clause_letter = "h"
-            elif "voidable" in q:
-                clause_letter = "i"
+        # Normalize whitespace and strip internal page tags
+        cleaned = re.sub(r"<<<PAGE:\d+>>>", "", raw_text)
+        cleaned = re.sub(r"\s+", " ", cleaned).strip()
 
-            if clause_letter:
-                if clause_letter == "b":
-                    match = re.search(r"\(b\)\s*(.*?becomes a promise[:\.])", display_text, re.DOTALL | re.IGNORECASE)
-                    if match:
-                        display_text = "(b) " + match.group(1).strip()
-                    else:
-                        match = re.search(r"\(b\)\s*(.*?)(?=\([a-z]\)|$)", display_text, re.DOTALL | re.IGNORECASE)
-                        if match:
-                            display_text = "(b) " + match.group(1).strip()
-                else:
-                    match = re.search(rf"\({clause_letter}\)\s*(.*?)(?=\([a-z]\)|$)", display_text, re.DOTALL | re.IGNORECASE)
-                    if match:
-                        display_text = f"({clause_letter}) " + match.group(1).strip()
+        # Extract primary definition sentence if available
+        if is_definition_query and "is said to" in cleaned:
+            match = re.search(r"([^.]*?is said to[^.]*\.)", cleaned, re.IGNORECASE)
+            if match:
+                return match.group(1).strip()
 
-        # Penal Code Section 379 text trimming
-        if top["act"] == "The Penal Code, 1860" and str(top["section"]) == "379":
-            display_text = re.split(r"\b380\.", display_text, maxsplit=1)[0].strip()
-            display_text = re.sub(r"\bhouse,\s*etc\.\s*$", "", display_text, flags=re.IGNORECASE).strip()
-
-        # Contract Act Clause (b) canonical representation
-        if top["act"] == "Contract Act, 1872" and str(top["section"]) == "2":
-            if ("accept" in q and "become" in q) or "promise" in q:
-                display_text = (
-                    "(b) When the person to whom the proposal is made signifies his assent thereto, "
-                    "the proposal is said to be accepted. A proposal, when accepted, becomes a promise."
-                )
-
-        # Remove page tags and normalize whitespace
-        display_text = re.sub(r"<<<PAGE:\d+>>>", "", display_text)
-        display_text = re.sub(r"\s+", " ", display_text).strip()
-
-        # Isolate exact statutory definition sentence
-        if top["act"] == "The Penal Code, 1860" and str(top["section"]) == "378":
-            m = re.search(r"(.*?is said to commit theft\.)", display_text, re.IGNORECASE)
-            if m:
-                display_text = m.group(1).strip()
-        elif top["act"] == "The Penal Code, 1860" and str(top["section"]) == "379":
-            m = re.search(r"(.*?may extend to three years, or with fine, or with both\.)", display_text, re.IGNORECASE)
-            if m:
-                display_text = m.group(1).strip()
-
-        return display_text
+        return cleaned
 
     @staticmethod
     def get_simple_explanation(top: Dict[str, Any], q: str) -> Optional[str]:
-        if top["act"] == "The Penal Code, 1860" and str(top["section"]) == "378":
-            return "In simple terms, theft means dishonestly taking movable property from another person without that person's consent."
-        elif top["act"] == "The Penal Code, 1860" and str(top["section"]) == "379":
-            return "In simple terms, the punishment for theft may include imprisonment up to three years, or fine, or both."
-        elif top["act"] == "Contract Act, 1872" and str(top["section"]) == "2":
-            if "accept" in q and "become" in q:
-                return "In simple terms, when a proposal is accepted, it becomes a promise."
-            elif "promise" in q:
-                return "In simple terms, a promise is formed when a proposal is accepted."
-            elif "proposal" in q:
-                return "In simple terms, a proposal is when one person shows willingness to do or not do something in order to get another person's agreement."
-            elif "acceptance" in q:
-                return "In simple terms, acceptance happens when the other person agrees to the proposal."
-            elif "consideration" in q:
-                return "In simple terms, consideration means something of value given, promised, or done in return for a promise."
-            elif "agreement" in q:
-                return "In simple terms, an agreement is a promise or set of promises forming consideration for each other."
-        return None
+        """
+        Synthesizes a plain-language summary of the provision for civic accessibility.
+        This summary is later subjected to NLI entailment verification against the statutory ground truth.
+        """
+        heading = (top.get("heading") or "").strip()
+        body = (top.get("text") or "").strip()
+        act = top.get("act", "Bangladesh Law")
+        sec = top.get("section", "")
+
+        if not heading and not body:
+            return None
+
+        # Clean heading
+        clean_heading = re.sub(r"^[A-Z0-9\.\-\s]+", "", heading).strip() or heading
+
+        # If heading clearly describes the offence or rule
+        return (
+            f"Under {act}, Section {sec} establishes the legal standard for '{clean_heading}'. "
+            f"It governs the statutory definitions, rights, liabilities, or penalties applicable under Bangladesh law."
+        )
 
     @staticmethod
     def build_citations(top: Dict[str, Any], bundle_sorted: List[Dict[str, Any]]) -> List[str]:
+        """Constructs formal statutory citations with Act title, Section, and official Gazette pagination."""
         citations = []
-        allowed_sections = {top["section"]}
-        if top["act"] == "The Penal Code, 1860" and str(top["section"]) == "379":
-            allowed_sections.add(378)
+        if not top:
+            return citations
 
-        heading_part = f" ({top['heading']})" if top.get("heading") else ""
-        citations.append(
-            f"{top['act']} — Section {top['section']}{heading_part}, pp. {top['pages'][0]}–{top['pages'][1]}"
-        )
+        heading_part = f" ({top['heading'][:60]}...)" if top.get("heading") else ""
+        pages_part = f", pp. {top['pages'][0]}–{top['pages'][1]}" if top.get("pages") and top['pages'][0] is not None else ""
+        citations.append(f"{top.get('act', 'Act')} — Section {top.get('section', '')}{heading_part}{pages_part}")
 
-        seen_sections = {top["section"]}
-        for b in bundle_sorted:
-            if b["section"] in seen_sections or b["section"] not in allowed_sections:
+        seen_sections = {str(top.get("section", ""))}
+        for b in bundle_sorted[:3]:
+            sec = str(b.get("section", ""))
+            if sec in seen_sections:
                 continue
-            h_part = f" ({b['heading']})" if b.get("heading") else ""
-            citations.append(
-                f"{b['act']} — Section {b['section']}{h_part}, pp. {b['pages'][0]}–{b['pages'][1]}"
-            )
-            seen_sections.add(b["section"])
+            h_part = f" ({b['heading'][:60]}...)" if b.get("heading") else ""
+            p_part = f", pp. {b['pages'][0]}–{b['pages'][1]}" if b.get("pages") and b['pages'][0] is not None else ""
+            citations.append(f"{b.get('act', 'Act')} — Section {sec}{h_part}{p_part}")
+            seen_sections.add(sec)
 
         return citations
 
     @staticmethod
     def order_evidence(top: Dict[str, Any], bundle_sorted: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-        return [top] + [b for b in bundle_sorted if b != top]
+        """Ensures the primary supporting provision is placed at index 0 followed by auxiliary evidence."""
+        if not bundle_sorted:
+            return [top] if top else []
+        return [top] + [b for b in bundle_sorted if b.get("section") != top.get("section")]
