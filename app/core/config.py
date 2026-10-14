@@ -1,9 +1,10 @@
 """
 Application Configuration and Settings
-Centralized environment variables, directory paths, and model parameters.
+Centralized environment variables, directory paths, and model parameters using Pydantic.
 """
 
 import os
+from typing import List
 from pydantic import BaseModel, Field
 
 
@@ -12,8 +13,14 @@ class Settings(BaseModel):
     PROJECT_NAME: str = "Bangladesh Legal AI"
     VERSION: str = "2.0.0"
     ENVIRONMENT: str = os.getenv("ENVIRONMENT", "production")
+    LOG_LEVEL: str = os.getenv("LOG_LEVEL", "INFO")
 
-    # Paths
+    # Server Configuration
+    API_HOST: str = os.getenv("API_HOST", "127.0.0.1")
+    API_PORT: int = int(os.getenv("API_PORT", "8000"))
+    CORS_ORIGINS: List[str] = ["*"]
+
+    # Storage Paths
     BASE_DIR: str = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
     DATA_DIR: str = os.path.join(BASE_DIR, "data")
     DOCS_DIR: str = os.path.join(BASE_DIR, "docs")

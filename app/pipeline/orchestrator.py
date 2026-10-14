@@ -3,10 +3,13 @@ Legal RAG Pipeline Orchestrator (Facade Pattern)
 Coordinates classifier, retrieval, reranker, and generator services in a clean, decoupled workflow.
 """
 
-from typing import Dict, Any, Optional
+from typing import Dict, Any, List, Optional
 from app.services.classifier_service import ClassifierService
 from app.services.retrieval_service import RetrievalService
 from app.services.generator_service import GeneratorService
+from app.core.logging import get_logger
+
+logger = get_logger(__name__)
 
 
 def build_refusal_response(reason: str) -> Dict[str, Any]:
@@ -31,12 +34,14 @@ class LegalRAGOrchestrator:
 
         # 1. Out-of-scope Cyber Filter
         if ClassifierService.is_cyber_query(q):
+            logger.info("Query refused: Out-of-scope cyber query.")
             return build_refusal_response(
                 "Cyber-related offences are outside the scope of the currently indexed laws."
             )
 
         # 2. Scope Verification
         if not ClassifierService.is_supported_scope(q, analysis):
+            logger.info("Query refused: Scope unsupported.")
             return build_refusal_response(
                 "This version currently supports theft-related Penal Code questions "
                 "and Contract Act Section 2 concepts such as proposal, acceptance, "
@@ -46,6 +51,7 @@ class LegalRAGOrchestrator:
         # 3. Active Law Resolution
         active_law_id = analysis.get("law_hint") or ClassifierService.choose_active_law(query)
         if active_law_id is None:
+            logger.info("Query refused: Active law undetermined.")
             return build_refusal_response(
                 "Query is outside the scope of the currently indexed laws."
             )
@@ -53,6 +59,7 @@ class LegalRAGOrchestrator:
         # 4. Hybrid Evidence Retrieval
         bundle = RetrievalService.build_evidence_bundle(query, k_initial=15, k_final=5)
         if not bundle:
+            logger.warning("No relevant evidence sections retrieved.")
             return build_refusal_response("No relevant legal sections found.")
 
         # 5. Top Bundle Item Selection
@@ -87,7 +94,7 @@ class LegalRAGOrchestrator:
         ordered_evidence = GeneratorService.order_evidence(top, bundle_sorted)
 
         if debug:
-            print(f"[DEBUG] Query: {query} | Type: {query_type} | Section: {top['section']}")
+            logger.debug(f"Query: {query} | Type: {query_type} | Section: {top['section']}")
 
         return {
             "status": "ok",
@@ -96,3 +103,11 @@ class LegalRAGOrchestrator:
             "evidence": ordered_evidence,
             "refusal_reason": None,
         }
+
+    @classmethod
+    def build_evidence_bundle(cls, query: str, k_final: int = 5) -> List[Dict[str, Any]]:
+        return RetrievalService.build_evidence_bundle(query, k_initial=15, k_final=k_final)
+
+
+# Singleton instance for dependency injection
+legal_rag_orchestrator = LegalRAGOrchestrator()

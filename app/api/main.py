@@ -1,134 +1,63 @@
 """
-FastAPI Server for Bangladesh Legal AI Assistant
-Provides high-performance, asynchronous REST API endpoints for statutory Q&A and retrieval.
+FastAPI Server for Bangladesh Legal AI Platform
+Provides production-grade REST API endpoints for statutory Q&A, semantic retrieval, and legal diagnostics.
 """
 
-from fastapi import FastAPI, Depends, HTTPException, status
+from contextlib import asynccontextmanager
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from typing import Optional, List
+from fastapi.responses import RedirectResponse
 
-from app.api.schemas import (
-    QueryRequest,
-    QueryResponse,
-    SearchRequest,
-    EvidenceItem,
-    HealthResponse
-)
-from app.api.dependencies import User, get_optional_current_user
-from app.rag_backend import answer_query, build_evidence_bundle
-from app.law_registry import LAW_REGISTRY
+from app.core.config import settings
+from app.core.logging import setup_logging, get_logger
+from app.api.v1.router import api_v1_router
+from app.api.v1.endpoints.health import health_check
+from app.api.v1.endpoints.query import process_legal_query
+from app.api.v1.endpoints.search import direct_statute_search
+
+# Initialize structured logging
+setup_logging(settings.LOG_LEVEL)
+logger = get_logger("app.api")
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Lifecycle event handler for application startup and shutdown."""
+    logger.info(f"Starting {settings.PROJECT_NAME} v{settings.VERSION} [{settings.ENVIRONMENT}]")
+    yield
+    logger.info(f"Shutting down {settings.PROJECT_NAME}")
+
 
 app = FastAPI(
-    title="Bangladesh Legal AI API",
-    version="2.0.0",
+    title=f"{settings.PROJECT_NAME} API",
+    version=settings.VERSION,
     description=(
-        "Precision-first, citation-grounded statutory legal assistant for Bangladesh Law. "
-        "Supports bilingual inquiries, intent classification, and verifiable statutory evidence."
+        "Production-grade, zero-hallucination statutory legal assistant for Bangladesh Law. "
+        "Provides bilingual Q&A, statutory evidence extraction, and deterministic legal validation."
     ),
     docs_url="/docs",
-    redoc_url="/redoc"
+    redoc_url="/redoc",
+    lifespan=lifespan
 )
 
-# Enable CORS for web, mobile, and desktop clients
+# CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=settings.CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
+# Mount Versioned v1 Router
+app.include_router(api_v1_router, prefix="/v1")
 
-@app.get("/", tags=["General"])
-async def root():
-    return {
-        "message": "Welcome to Bangladesh Legal AI API",
-        "docs": "/docs",
-        "health": "/health",
-        "version": "2.0.0"
-    }
-
-
-@app.get("/health", response_model=HealthResponse, tags=["General"])
-async def health_check():
-    indexed_count = len(LAW_REGISTRY)
-    return HealthResponse(
-        status="healthy",
-        version="2.0.0",
-        laws_indexed=indexed_count,
-        environment="production"
-    )
+# Root endpoints & backward compatibility forwarders
+@app.get("/", include_in_schema=False)
+async def root_redirect():
+    """Redirects root visitors directly to the Swagger UI documentation."""
+    return RedirectResponse(url="/docs")
 
 
-@app.post("/v1/query", response_model=QueryResponse, tags=["Legal Assistant"])
-async def process_legal_query(
-    request: QueryRequest,
-    current_user: Optional[User] = Depends(get_optional_current_user)
-):
-    """
-    Main statutory question-answering endpoint.
-    Retrieves relevant laws, selects the most pertinent section, formats citations,
-    and returns a verified answer with full evidence.
-    """
-    try:
-        raw_resp = answer_query(request.query)
-
-        # Convert raw dictionary into verified Pydantic QueryResponse
-        evidence_items = []
-        for e in raw_resp.get("evidence", []):
-            evidence_items.append(
-                EvidenceItem(
-                    act=e.get("act", ""),
-                    section=e.get("section", ""),
-                    heading=e.get("heading"),
-                    text=e.get("text", ""),
-                    score=e.get("score"),
-                    pages=e.get("pages"),
-                    source_pdf=e.get("source_pdf")
-                )
-            )
-
-        return QueryResponse(
-            status=raw_resp.get("status", "ok"),
-            answer_text=raw_resp.get("answer_text", ""),
-            citations=raw_resp.get("citations", []),
-            evidence=evidence_items,
-            refusal_reason=raw_resp.get("refusal_reason")
-        )
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"An error occurred while analyzing the legal query: {str(e)}"
-        )
-
-
-@app.post("/v1/search", response_model=List[EvidenceItem], tags=["Statute Retrieval"])
-async def direct_statute_search(
-    request: SearchRequest,
-    current_user: Optional[User] = Depends(get_optional_current_user)
-):
-    """
-    Direct statutory search endpoint.
-    Fetches raw section matches from the hybrid vector/keyword store without synthesis.
-    """
-    try:
-        bundle = build_evidence_bundle(request.query, k_final=request.top_k)
-        results = []
-        for doc in bundle:
-            results.append(
-                EvidenceItem(
-                    act=doc.get("act", ""),
-                    section=doc.get("section", ""),
-                    heading=doc.get("heading"),
-                    text=doc.get("text", ""),
-                    score=doc.get("score"),
-                    pages=doc.get("pages"),
-                    source_pdf=doc.get("source_pdf")
-                )
-            )
-        return results
-    except Exception as e:
-        raise HTTPException(
-            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-            detail=f"Failed to execute statutory search: {str(e)}"
-        )
+# Direct root health endpoint
+app.add_api_route("/health", health_check, methods=["GET"], tags=["System Health"], include_in_schema=True)
