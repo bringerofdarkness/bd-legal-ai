@@ -419,7 +419,7 @@ gantt
   - `POST /v1/query`: Core synchronous QA endpoint returning answer, structured citations, and evidence array.
   - `POST /v1/search`: Direct statutory retrieval endpoint returning raw sections with similarity scores.
   - `GET /health`: Healthcheck endpoint validating database and embedding model readiness.
-- [ ] **Task 1.2:** Eliminate hardcoded string checks in [app/rag_backend.py](file:///F:/Self%20Project/Bangladesh%20Legal%20AI/app/rag_backend.py). Replace `analyze_query()` heuristics with an extensible Pydantic-based intent classifier.
+- [x] **Task 1.2:** Eliminate hardcoded string checks in [app/rag_backend.py](file:///F:/Self%20Project/Bangladesh%20Legal%20AI/app/rag_backend.py). Replace `analyze_query()` heuristics with an extensible Pydantic-based intent classifier.
 - [x] **Task 1.3:** Setup local Docker Compose orchestrating `api` (FastAPI) and `ui` (Streamlit) services via `docker-compose.yml`.
 
 #### Priority 2: Data Scaling & Universal Ingestion Engine
