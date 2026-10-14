@@ -20,6 +20,9 @@ class Settings(BaseModel):
     API_PORT: int = int(os.getenv("API_PORT", "8000"))
     CORS_ORIGINS: List[str] = ["*"]
 
+    # Database Configuration (PostgreSQL + pgvector)
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql://postgres:postgres@127.0.0.1:5433/bd_legal_db")
+
     # Storage Paths
     BASE_DIR: str = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
     DATA_DIR: str = os.path.join(BASE_DIR, "data")

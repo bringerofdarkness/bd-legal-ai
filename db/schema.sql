@@ -55,9 +55,9 @@ CREATE TABLE IF NOT EXISTS sections (
     page_end INT,
     source_pdf TEXT,
 
-    -- BGE-M3 Dense Multilingual Vector Embeddings (1024 Dimensions)
-    embedding_en vector(1024),
-    embedding_bn vector(1024),
+    -- Dense Multilingual Vector Embeddings (384-d for paraphrase-multilingual, upgradable to 1024-d with BGE-M3)
+    embedding_en vector(384),
+    embedding_bn vector(384),
 
     -- Sparse Keyword Search Vectors (PostgreSQL tsvector)
     search_vector_en tsvector GENERATED ALWAYS AS (

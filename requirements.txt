@@ -13,3 +13,5 @@ rank-bm25==0.2.2
 numpy
 huggingface-hub
 langchain-huggingface
+psycopg[binary]>=3.2.0
+pgvector>=0.5.0
