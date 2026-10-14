@@ -7,7 +7,9 @@
     "expected_section": "378",
     "category": "definition",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 378"],
+    "expected_sections": [
+      "Penal Code 378"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Basic definition question"
@@ -20,7 +22,9 @@
     "expected_section": "378",
     "category": "definition",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 378"],
+    "expected_sections": [
+      "Penal Code 378"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Definition phrasing variation"
@@ -33,7 +37,9 @@
     "expected_section": "379",
     "category": "punishment",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 379"],
+    "expected_sections": [
+      "Penal Code 379"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Punishment query, not definition"
@@ -46,7 +52,9 @@
     "expected_section": "379",
     "category": "punishment",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 379"],
+    "expected_sections": [
+      "Penal Code 379"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Penalty wording variation"
@@ -59,7 +67,9 @@
     "expected_section": "378",
     "category": "concept",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 378"],
+    "expected_sections": [
+      "Penal Code 378"
+    ],
     "difficulty": "medium",
     "should_refuse": false,
     "notes": "Scenario-based theft concept mapping"
@@ -72,7 +82,9 @@
     "expected_section": "378",
     "category": "concept",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 378"],
+    "expected_sections": [
+      "Penal Code 378"
+    ],
     "difficulty": "medium",
     "should_refuse": false,
     "notes": "Scenario phrasing for theft"
@@ -85,7 +97,9 @@
     "expected_section": "378",
     "category": "concept",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 378"],
+    "expected_sections": [
+      "Penal Code 378"
+    ],
     "difficulty": "medium",
     "should_refuse": false,
     "notes": "Informal theft scenario"
@@ -98,7 +112,9 @@
     "expected_section": "379",
     "category": "punishment",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 379"],
+    "expected_sections": [
+      "Penal Code 379"
+    ],
     "difficulty": "medium",
     "should_refuse": false,
     "notes": "Punishment implied through conversational wording"
@@ -111,7 +127,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Basic proposal definition"
@@ -124,7 +142,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Definition phrasing variation"
@@ -137,7 +157,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Basic acceptance definition"
@@ -150,7 +172,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Definition phrasing variation"
@@ -163,7 +187,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Basic promise definition"
@@ -176,7 +202,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Definition phrasing variation"
@@ -189,7 +217,9 @@
     "expected_section": "2",
     "category": "concept",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "medium",
     "should_refuse": false,
     "notes": "Concept relation between proposal and promise"
@@ -202,7 +232,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Basic promisor definition"
@@ -215,7 +247,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Basic promisee definition"
@@ -228,7 +262,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Agreement definition query"
@@ -241,7 +277,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Basic contract definition"
@@ -254,7 +292,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Basic consideration definition"
@@ -267,7 +307,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Definition phrasing variation"
@@ -379,7 +421,9 @@
     "expected_section": "379",
     "category": "punishment",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 379"],
+    "expected_sections": [
+      "Penal Code 379"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Direct punishment question"
@@ -392,7 +436,9 @@
     "expected_section": "378",
     "category": "definition",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 378"],
+    "expected_sections": [
+      "Penal Code 378"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Legal wording for theft definition"
@@ -405,7 +451,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Definition with legal context wording"
@@ -418,7 +466,9 @@
     "expected_section": "2",
     "category": "concept",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "medium",
     "should_refuse": false,
     "notes": "Offer accepted becomes promise"
@@ -431,7 +481,9 @@
     "expected_section": "378",
     "category": "section_lookup",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 378"],
+    "expected_sections": [
+      "Penal Code 378"
+    ],
     "difficulty": "hard",
     "should_refuse": false,
     "notes": "Scenario mapped to theft section"
@@ -444,7 +496,9 @@
     "expected_section": "378",
     "category": "concept",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 378"],
+    "expected_sections": [
+      "Penal Code 378"
+    ],
     "difficulty": "hard",
     "should_refuse": false,
     "notes": "Scenario-based law applicability"
@@ -457,7 +511,9 @@
     "expected_section": "2",
     "category": "concept",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "hard",
     "should_refuse": false,
     "notes": "Applied concept query in plain language"
@@ -470,7 +526,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "medium",
     "should_refuse": false,
     "notes": "Promisor role identification"
@@ -527,7 +585,9 @@
     "expected_section": "378",
     "category": "section_lookup",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 378"],
+    "expected_sections": [
+      "Penal Code 378"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Direct section lookup for theft definition"
@@ -540,7 +600,9 @@
     "expected_section": "378",
     "category": "section_lookup",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 378"],
+    "expected_sections": [
+      "Penal Code 378"
+    ],
     "difficulty": "medium",
     "should_refuse": false,
     "notes": "Must distinguish definition from punishment"
@@ -553,7 +615,9 @@
     "expected_section": "379",
     "category": "section_lookup",
     "law": "penal_code",
-    "expected_sections": ["Penal Code 379"],
+    "expected_sections": [
+      "Penal Code 379"
+    ],
     "difficulty": "medium",
     "should_refuse": false,
     "notes": "Penalty section lookup"
@@ -566,7 +630,9 @@
     "expected_section": "2",
     "category": "concept",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "medium",
     "should_refuse": false,
     "notes": "Checks proposal to promise relation"
@@ -579,7 +645,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Agreement definition with act mention"
@@ -592,7 +660,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Promisee role definition"
@@ -605,7 +675,9 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Promisor role definition"
@@ -618,9 +690,353 @@
     "expected_section": "2",
     "category": "definition",
     "law": "contract_act",
-    "expected_sections": ["Contract Act 2"],
+    "expected_sections": [
+      "Contract Act 2"
+    ],
     "difficulty": "easy",
     "should_refuse": false,
     "notes": "Acceptance definition with act mention"
+  },
+  {
+    "id": "pc_murder_def_001",
+    "query": "what is murder under section 300?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "300",
+    "category": "definition",
+    "language": "en"
+  },
+  {
+    "id": "pc_murder_pun_001",
+    "query": "what is the punishment for murder under section 302?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "302",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "pc_homicide_def_001",
+    "query": "define culpable homicide in the Penal Code",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "299",
+    "category": "definition",
+    "language": "en"
+  },
+  {
+    "id": "pc_attempt_murder_001",
+    "query": "what is the penalty for attempt to murder under section 307?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "307",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "pc_cheating_def_001",
+    "query": "what constitutes cheating under section 415?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "415",
+    "category": "definition",
+    "language": "en"
+  },
+  {
+    "id": "pc_cheating_pun_001",
+    "query": "what is the punishment for cheating under section 420?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "420",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "pc_hurt_def_001",
+    "query": "what is grievous hurt under section 320?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "320",
+    "category": "definition",
+    "language": "en"
+  },
+  {
+    "id": "pc_hurt_pun_001",
+    "query": "punishment for voluntarily causing grievous hurt under section 325",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "325",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "pc_dangerous_weapon_001",
+    "query": "punishment for causing hurt by dangerous weapons under section 324",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "324",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "pc_extortion_def_001",
+    "query": "define extortion under section 383",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "383",
+    "category": "definition",
+    "language": "en"
+  },
+  {
+    "id": "pc_extortion_pun_001",
+    "query": "what is the punishment for extortion under section 384?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "384",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "pc_robbery_def_001",
+    "query": "when is theft robbery under section 390?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "390",
+    "category": "definition",
+    "language": "en"
+  },
+  {
+    "id": "pc_robbery_pun_001",
+    "query": "punishment for robbery under section 392",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "392",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "pc_dacoity_pun_001",
+    "query": "what is the punishment for dacoity under section 395?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "395",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "pc_cbt_def_001",
+    "query": "what is criminal breach of trust under section 405?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "405",
+    "category": "definition",
+    "language": "en"
+  },
+  {
+    "id": "pc_cbt_pun_001",
+    "query": "punishment for criminal breach of trust under section 406",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "406",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "pc_stolen_prop_001",
+    "query": "punishment for dishonestly receiving stolen property under section 411",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "411",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "pc_defamation_def_001",
+    "query": "what constitutes defamation under section 499?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "499",
+    "category": "definition",
+    "language": "en"
+  },
+  {
+    "id": "pc_defamation_pun_001",
+    "query": "what is the penalty for defamation under section 500?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "500",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "pc_intimidation_001",
+    "query": "punishment for criminal intimidation under section 506",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "506",
+    "category": "punishment",
+    "language": "en"
+  },
+  {
+    "id": "ca_void_agreements_001",
+    "query": "what makes an agreement void without consideration under section 25?",
+    "expected_status": "ok",
+    "expected_law": "The Contract Act, 1872",
+    "expected_section": "25",
+    "category": "concept",
+    "language": "en"
+  },
+  {
+    "id": "ca_unlawful_consideration_001",
+    "query": "what considerations and objects are lawful under section 23?",
+    "expected_status": "ok",
+    "expected_law": "The Contract Act, 1872",
+    "expected_section": "23",
+    "category": "concept",
+    "language": "en"
+  },
+  {
+    "id": "ca_contingent_contract_001",
+    "query": "what is a contingent contract under section 31?",
+    "expected_status": "ok",
+    "expected_law": "The Contract Act, 1872",
+    "expected_section": "31",
+    "category": "definition",
+    "language": "en"
+  },
+  {
+    "id": "sra_injunction_def_001",
+    "query": "how is preventive relief granted by injunction under section 52?",
+    "expected_status": "ok",
+    "expected_law": "The Specific Relief Act, 1877",
+    "expected_section": "52",
+    "category": "concept",
+    "language": "en"
+  },
+  {
+    "id": "sra_perpetual_injunction_001",
+    "query": "when is perpetual injunction granted under section 54?",
+    "expected_status": "ok",
+    "expected_law": "The Specific Relief Act, 1877",
+    "expected_section": "54",
+    "category": "concept",
+    "language": "en"
+  },
+  {
+    "id": "sra_injunction_refused_001",
+    "query": "when an injunction cannot be granted under section 56?",
+    "expected_status": "ok",
+    "expected_law": "The Specific Relief Act, 1877",
+    "expected_section": "56",
+    "category": "concept",
+    "language": "en"
+  },
+  {
+    "id": "sra_recovery_possession_001",
+    "query": "suit by person dispossessed of immovable property under section 9",
+    "expected_status": "ok",
+    "expected_law": "The Specific Relief Act, 1877",
+    "expected_section": "9",
+    "category": "concept",
+    "language": "en"
+  },
+  {
+    "id": "cpc_res_judicata_001",
+    "query": "what is res judicata under section 11 of CPC?",
+    "expected_status": "ok",
+    "expected_law": "The Code of Civil Procedure, 1908",
+    "expected_section": "11",
+    "category": "concept",
+    "language": "en"
+  },
+  {
+    "id": "cpc_civil_nature_001",
+    "query": "which courts try all civil suits under section 9 of CPC?",
+    "expected_status": "ok",
+    "expected_law": "The Code of Civil Procedure, 1908",
+    "expected_section": "9",
+    "category": "concept",
+    "language": "en"
+  },
+  {
+    "id": "cpc_institution_suit_001",
+    "query": "how are suits instituted under section 26 of CPC?",
+    "expected_status": "ok",
+    "expected_law": "The Code of Civil Procedure, 1908",
+    "expected_section": "26",
+    "category": "concept",
+    "language": "en"
+  },
+  {
+    "id": "bn_theft_def_001",
+    "query": "চুরির সংজ্ঞা কি?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "378",
+    "category": "definition",
+    "language": "bn"
+  },
+  {
+    "id": "bn_theft_pun_001",
+    "query": "দণ্ডবিধির ৩৭৯ ধারায় চুরির শাস্তি কি?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "379",
+    "category": "punishment",
+    "language": "bn"
+  },
+  {
+    "id": "bn_murder_pun_001",
+    "query": "খুনের শাস্তি কি ধারা ৩০২ অনুযায়ী?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "302",
+    "category": "punishment",
+    "language": "bn"
+  },
+  {
+    "id": "bn_cheating_pun_001",
+    "query": "প্রতারণা ও ৪২০ ধারার শাস্তি কি?",
+    "expected_status": "ok",
+    "expected_law": "The Penal Code, 1860",
+    "expected_section": "420",
+    "category": "punishment",
+    "language": "bn"
+  },
+  {
+    "id": "bn_contract_def_001",
+    "query": "চুক্তি কাকে বলে ধারা ২ অনুযায়ী?",
+    "expected_status": "ok",
+    "expected_law": "The Contract Act, 1872",
+    "expected_section": "2",
+    "category": "definition",
+    "language": "bn"
+  },
+  {
+    "id": "bn_injunction_001",
+    "query": "সুনির্দিষ্ট প্রতিকার আইনে স্থায়ী নিষেধাজ্ঞা কোন ধারায়?",
+    "expected_status": "ok",
+    "expected_law": "The Specific Relief Act, 1877",
+    "expected_section": "54",
+    "category": "concept",
+    "language": "bn"
+  },
+  {
+    "id": "neg_out_of_scope_001",
+    "query": "How to make a chocolate cake?",
+    "expected_status": "refused",
+    "expected_law": null,
+    "expected_section": null,
+    "category": "out_of_scope",
+    "language": "en"
+  },
+  {
+    "id": "neg_gibberish_002",
+    "query": "xyz123abc456qwerty!@#$",
+    "expected_status": "refused",
+    "expected_law": null,
+    "expected_section": null,
+    "category": "out_of_scope",
+    "language": "en"
   }
 ]

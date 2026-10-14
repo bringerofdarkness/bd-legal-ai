@@ -49,7 +49,8 @@ class RetrievalService:
         cls,
         query: str,
         top_k: int = 5,
-        target_act_id: Optional[str] = None
+        target_act_id: Optional[str] = None,
+        target_section_no: Optional[str] = None,
     ) -> List[Dict[str, Any]]:
         """
         Executes native PostgreSQL Hybrid Search:
@@ -85,7 +86,7 @@ class RetrievalService:
             ),
             sparse_search AS (
                 SELECT 
-                    s.section_id,
+                    s.section_id, s.section_no,
                     ts_rank_cd(s.search_vector_en, plainto_tsquery('english', %(q_text)s)) AS bm25_score,
                     ROW_NUMBER() OVER (ORDER BY ts_rank_cd(s.search_vector_en, plainto_tsquery('english', %(q_text)s)) DESC) AS sparse_rank
                 FROM sections s
@@ -97,7 +98,7 @@ class RetrievalService:
                     COALESCE(d.section_id, sp.section_id) AS section_id,
                     COALESCE(d.act_id, '') AS act_id,
                     COALESCE(d.act_name, '') AS act_name,
-                    COALESCE(d.section_no, '') AS section_no,
+                    COALESCE(d.section_no, sp.section_no) AS section_no,
                     COALESCE(d.heading_en, '') AS heading_en,
                     COALESCE(d.body_en, '') AS body_en,
                     COALESCE(d.full_text_en, '') AS full_text_en,
@@ -105,11 +106,16 @@ class RetrievalService:
                     d.page_start,
                     d.page_end,
                     d.cosine_distance,
-                    (COALESCE(1.0 / (60.0 + d.dense_rank), 0.0) + COALESCE(1.0 / (60.0 + sp.sparse_rank), 0.0)) AS rrf_score
+                    sp.sparse_rank,
+                    (
+                        COALESCE(1.0 / (60.0 + d.dense_rank), 0.0) + 
+                        COALESCE(1.0 / (60.0 + sp.sparse_rank), 0.0) +
+                        (CASE WHEN COALESCE(d.section_no, sp.section_no) = %(target_sec)s THEN 2.0 ELSE 0.0 END)
+                    ) AS rrf_score
                 FROM dense_search d
                 FULL OUTER JOIN sparse_search sp ON d.section_id = sp.section_id
             )
-            SELECT section_id, act_id, act_name, section_no, heading_en, body_en, full_text_en, source_pdf, page_start, page_end, rrf_score
+            SELECT section_id, act_id, act_name, section_no, heading_en, body_en, full_text_en, source_pdf, page_start, page_end, rrf_score, cosine_distance, sparse_rank
             FROM hybrid_fused
             ORDER BY rrf_score DESC
             LIMIT %(top_k)s;
@@ -119,6 +125,7 @@ class RetrievalService:
                 "q_emb": q_emb,
                 "q_text": clean_q,
                 "act_id": target_act_id,
+                "target_sec": str(target_section_no) if target_section_no else "",
                 "top_k": top_k
             }
 
@@ -126,6 +133,14 @@ class RetrievalService:
             with conn.cursor() as cur:
                 cur.execute(sql_hybrid, params)
                 rows = cur.fetchall()
+
+                # Semantic distance threshold: detect completely out-of-scope queries
+                if rows:
+                    top_dist = rows[0][11]
+                    top_sparse = rows[0][12]
+                    if top_dist is not None and top_dist > 0.65 and top_sparse is None and not target_section_no:
+                        logger.info(f"Query rejected as out-of-scope (cosine distance {top_dist:.3f} > 0.65 with no keyword match).")
+                        return []
 
                 for row in rows:
                     sec_id = row[0]
@@ -186,6 +201,7 @@ class RetrievalService:
         """
         analysis = ClassifierService.analyze_query(query)
         law_hint = analysis.get("law_hint")
+        target_section = analysis.get("section_no")
         target_act_id = None
         if law_hint:
             if law_hint in LAW_REGISTRY:
@@ -194,7 +210,12 @@ class RetrievalService:
                 target_act_id = str(law_hint)
 
         # 1. Attempt PostgreSQL Hybrid Retrieval (Bilingual + Full 10 Acts)
-        pg_bundle = cls.query_pgvector_hybrid(query=query, top_k=k_final, target_act_id=target_act_id)
+        pg_bundle = cls.query_pgvector_hybrid(
+            query=query,
+            top_k=k_final,
+            target_act_id=target_act_id,
+            target_section_no=target_section,
+        )
         if pg_bundle:
             return pg_bundle
 

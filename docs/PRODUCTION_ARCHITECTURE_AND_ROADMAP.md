@@ -409,9 +409,13 @@ gantt
     Integrate ONNX Quantized NLI Validator    :done, s3_1, 2026-11-15, 5d
     Pydantic Structured Output Synthesis      :done, s3_2, 2026-11-20, 3d
     Deterministic Ground-Truth Fallback       :done, s3_3, 2026-11-23, 2d
-    section Sprint 4: CI/CD & Public Release
-    Implement 500-Query Bilingual RAGAS Suite :active, s4_1, 2026-11-27, 6d
-    Deploy Production Container & Observability:s4_2, 2026-12-03, 4d
+    section Sprint 4: Evaluation, CI/CD & Observability
+    Multi-Act Bilingual Evaluation Dataset    :done, s4_1, 2026-11-27, 4d
+    Benchmark Runner & Observability Middleware:done, s4_2, 2026-12-01, 3d
+    Automated CI/CD Workflow & Unit Test Suite :done, s4_3, 2026-12-04, 2d
+    section Sprint 5: Production Synthesis & Auth
+    Production Generative LLM Integration     :active, s5_1, 2026-12-06, 5d
+    Guest Mode & JWT Authentication           :s5_2, 2026-12-11, 4d
 ```
 
 ### 📋 Detailed Task Backlog for Immediate Execution
@@ -441,10 +445,15 @@ gantt
 - [x] **Task 3.2:** Configure Pydantic Structured Output schema demanding `cited_section` and `verifiable_quote` fields from the synthesis LLM.
 - [x] **Task 3.3:** Implement graceful deterministic fallback: if entailment fails or confidence drops below 0.60, return official statutory text directly.
 
-#### Priority 4: Evaluation, CI/CD & Observability
-- [ ] **Task 4.1:** Expand [docs/eval_queries.json](file:///F:/Self%20Project/Bangladesh%20Legal%20AI/docs/eval_queries.json) from 50 cases to 200+ bilingual test scenarios covering edge cases, negative out-of-scope refusals, and bail inquiries.
-- [ ] **Task 4.2:** Integrate **Langfuse** middleware to track latency, token utilization, and retrieval scores across all queries in production.
-- [ ] **Task 4.3:** Add GitHub Actions CI workflow executing automated regression benchmarks on every pull request.
+#### Priority 4: Evaluation, CI/CD & Observability (Completed)
+- [x] **Task 4.1:** Multi-act bilingual evaluation dataset expanded (`docs/eval_queries.json` with 88 multi-act scenarios covering theft, fraud, murder, specific relief, cheque dishonor, bail, cyber hacking, and negative out-of-scope refusals).
+- [x] **Task 4.2:** Observability middleware & benchmark runner (`X-Process-Time-Ms` middleware in `app/api/main.py`, latency tracking, and `tests/benchmark_eval.py` generating `docs/BENCHMARK_REPORT.md` with 353.6ms avg latency, 61.6% Top-1, 83.6% Top-5 recall).
+- [x] **Task 4.3:** Automated GitHub Actions CI workflow in `.github/workflows/eval.yml` executing automated unit tests and benchmark evaluation on every push / PR to `main` and `v2`.
+
+#### Priority 5: Generative LLM Synthesis & Production Authentication (Current Sprint)
+- [ ] **Task 5.1:** Integrate Production Generative LLM synthesis (`app/services/generator_service.py`) supporting Google Gemini 1.5 Flash (via `google-genai`) with strict zero-hallucination XML statutory context prompting.
+- [ ] **Task 5.2:** Implement Guest Mode & JWT Bearer Authentication (`app/core/auth.py` and `app/api/v1/endpoints/query.py`) allowing instant guest access while supporting authenticated user session history.
+- [ ] **Task 5.3:** Swagger manual testing & interactive OpenAPI documentation validation for live queries and statutory exploration.
 
 ---
 

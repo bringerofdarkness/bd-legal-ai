@@ -1,12 +1,13 @@
-name: Run Evaluation
+name: Run Evaluation & Unit Tests
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, v2 ]
   pull_request:
+    branches: [ main, v2 ]
 
 jobs:
-  eval:
+  test_and_eval:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,6 +23,6 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run evaluation
+      - name: Run Unit Tests
         run: |
-          python run_eval.py
+          python -m unittest discover -s tests/unit

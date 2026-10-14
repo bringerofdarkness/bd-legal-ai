@@ -50,11 +50,16 @@ class ClassifierService:
 
     @staticmethod
     def extract_section_no(query: str) -> Optional[str]:
-        """Extracts mentioned section number in English or Bengali (e.g. 'section 302', 'ধারা ৩৭৮')."""
+        """Extracts mentioned section number in English or Bengali (e.g. 'section 302', 'ধারা ৩৭৮', '৩৭৯ ধারায়')."""
         q_norm = query.translate(BN_DIGITS)
+        # Prefix match: "section 302", "sec 302", "ধারা ৩০২"
         match = re.search(r"(?:section|sec|ধারা)\s*[:#]?\s*(\d{1,4}[A-Z]?)", q_norm, re.IGNORECASE)
         if match:
             return match.group(1).upper()
+        # Postfix match: "302 section", "৩৭৯ ধারায়", "৪২০ ধারা"
+        match2 = re.search(r"(\d{1,4}[A-Z]?)\s*(?:section|sec|ধারা|ধারায়)", q_norm, re.IGNORECASE)
+        if match2:
+            return match2.group(1).upper()
         # Direct number if query is very short like "302" or "378"
         if re.match(r"^\s*(\d{1,4}[A-Z]?)\s*$", q_norm):
             return q_norm.strip().upper()

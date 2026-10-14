@@ -36,7 +36,7 @@ class TestFastAPIEndpoints(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         statutes = response.json()
         self.assertIsInstance(statutes, list)
-        self.assertTrue(any(s["key"] == "penal_code" for s in statutes))
+        self.assertTrue(any(s["key"] == "penal_code_1860" for s in statutes))
 
     def test_v1_query_theft(self):
         response = self.client.post("/v1/query", json={"query": "What is theft?"})

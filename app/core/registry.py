@@ -66,7 +66,7 @@ def _load_manifest_registry() -> Dict[str, LawConfig]:
             if "penal code" in title_en.lower():
                 aliases.extend(["penal code", "theft", "murder", "criminal law", "দণ্ডবিধি"])
             elif "contract" in title_en.lower():
-                aliases.extend(["contract act", "agreement", "proposal", "acceptance", "চুক্তি আইন"])
+                aliases.extend(["contract", "contract act", "agreement", "proposal", "acceptance", "consideration", "চুক্তি", "চুক্তি আইন"])
             elif "criminal procedure" in title_en.lower():
                 aliases.extend(["crpc", "criminal procedure", "bail", "arrest", "ফৌজদারী"])
             elif "civil procedure" in title_en.lower():

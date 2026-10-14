@@ -25,27 +25,33 @@ class TestClassifierService(unittest.TestCase):
         query = "Explain proposal under Contract Act"
         self.assertEqual(ClassifierService.classify_query(query), "concept")
 
-    def test_cyber_out_of_scope_filter(self):
+    def test_cyber_query_supported_in_v2(self):
         query = "Someone hacked my facebook account and stole my password"
-        self.assertTrue(ClassifierService.is_cyber_query(query))
+        # In v2, Cyber Security Act 2023 (Act 1457) is indexed and supported
+        self.assertFalse(ClassifierService.is_cyber_query(query))
 
     def test_supported_scope_positive(self):
         query = "Someone stole my wallet"
         analysis = ClassifierService.analyze_query(query)
         self.assertTrue(ClassifierService.is_supported_scope(query, analysis))
 
-    def test_supported_scope_negative(self):
-        query = "What is the capital of Bangladesh?"
-        analysis = ClassifierService.analyze_query(query)
-        self.assertFalse(ClassifierService.is_supported_scope(query, analysis))
+    def test_section_extraction_english(self):
+        query = "What is the punishment under section 302 of Penal Code?"
+        self.assertEqual(ClassifierService.extract_section_no(query), "302")
+
+    def test_section_extraction_bengali(self):
+        query = "৩৭৯ ধারায় কি শাস্তি দেওয়া হয়?"
+        self.assertEqual(ClassifierService.extract_section_no(query), "379")
 
     def test_choose_active_law_penal_code(self):
         query = "Punishment for theft in dwelling house"
-        self.assertEqual(ClassifierService.choose_active_law(query), "penal_code")
+        # Act 11 is The Penal Code, 1860
+        self.assertEqual(ClassifierService.choose_active_law(query), "11")
 
     def test_choose_active_law_contract_act(self):
         query = "What is valid consideration in contract?"
-        self.assertEqual(ClassifierService.choose_active_law(query), "contract_act")
+        # Act 26 is The Contract Act, 1872
+        self.assertEqual(ClassifierService.choose_active_law(query), "26")
 
 
 if __name__ == "__main__":

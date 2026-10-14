@@ -49,6 +49,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+# Observability Middleware: Tracks latency, request path, and status code
+@app.middleware("http")
+async def observability_middleware(request, call_next):
+    import time
+    start_time = time.time()
+    response = await call_next(request)
+    process_time_ms = (time.time() - start_time) * 1000.0
+    response.headers["X-Process-Time-Ms"] = f"{process_time_ms:.2f}"
+    logger.info(
+        f"API Request: {request.method} {request.url.path} | "
+        f"Status: {response.status_code} | Latency: {process_time_ms:.2f}ms"
+    )
+    return response
+
+
 # Mount Versioned v1 Router
 app.include_router(api_v1_router, prefix="/v1")
 
