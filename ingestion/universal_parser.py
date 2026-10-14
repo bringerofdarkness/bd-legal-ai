@@ -52,7 +52,7 @@ CHAPTER_RE = re.compile(
     re.IGNORECASE
 )
 SECTION_START_RE = re.compile(
-    r"^\s*(\d{1,4}[A-Z]?|[০-৯]+[ক-হ]?)\.\s*(.+?)\s*$"
+    r"^\s*(\d{1,4}[A-Z]?|[০-৯]+[ক-হ]?)[.।]\s*(.+?)\s*$"
 )
 CLAUSE_RE = re.compile(
     r"^\s*(\(\d+\)|\([a-z]\)|\([০-৯]+\)|\([ক-হ]\))\s*(.*)$",

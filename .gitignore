@@ -3,11 +3,19 @@ __pycache__/
 .ipynb_checkpoints/
 .env
 
-chroma_*_broken/
-chroma_*_legacy/
-chroma_penal_code/
-chroma_penal_code_v2/
-data/
-*data.zip
-*.html
+# Local Chroma vector databases and binary dumps
+chroma_*/
+data/chroma_*/
+data/**/chroma.sqlite3
+data.zip
+*.zip
+
+# Raw downloaded HTML/PDF scrapers
+data/raw_html/
+raw_data/
 *.pdf
+*.html
+
+# Ensure parsed statutory datasets are tracked
+!data/parsed_acts/
+!data/parsed_acts/*.json
