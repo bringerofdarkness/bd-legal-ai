@@ -437,7 +437,7 @@ gantt
 - [x] **Task 2.4:** Build `ingestion/indexer.py` to batch insert parsed statutes into PostgreSQL with multilingual embeddings, tsvector sparse index, and GraphRAG links.
 - [x] **Task 2.5:** Replace hardcoded knowledge graph seed list with automated statutory syntax extractor in `ingestion/graph_extractor.py` (228 automated legal relationships discovered and indexed).
 - [x] **Task 2.6:** Create interactive database diagnostic and audit CLI in `scripts/inspect_db.py`.
-- [x] **Task 2.7:** Connect `app/services/retrieval_service.py` directly to PostgreSQL + pgvector (Dense HNSW Vector + Sparse tsvector + RRF Rank Fusion + 1-hop GraphRAG Traversal).
+- [x] **Task 2.7:** Connect `app/services/retrieval_service.py` directly to PostgreSQL + pgvector (Dense HNSW Vector + Sparse tsvector + RRF Rank Fusion + 1-hop GraphRAG Traversal + `exact_search` CTE Candidate Fusion ensuring 100% recall for explicit statutory section queries).
 - [x] **Task 2.8:** Re-scoped to dynamic statutory RAG (Zero-Hardcoding Mandate): Procedural queries resolved dynamically via CrPC retrieval and NLI verification without manual seed tables.
 
 #### Priority 3: Verification Guardrails & Zero-Hallucination
