@@ -10,6 +10,16 @@
     "description": "General penal code for offenses, definitions, and punishments in Bangladesh."
   },
   {
+    "act_id": "24",
+    "slug": "evidence_act_1872",
+    "title_en": "The Evidence Act, 1872",
+    "title_bn": "সাক্ষ্য আইন, ১৮৭২",
+    "year": 1872,
+    "has_crpc_schedule": false,
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-24.html",
+    "description": "Rules of evidence, admissibility, witness examination, and burden of proof in court proceedings."
+  },
+  {
     "act_id": "26",
     "slug": "contract_act_1872",
     "title_en": "The Contract Act, 1872",
@@ -20,44 +30,34 @@
     "description": "Foundational civil law governing contracts, agreements, proposals, and considerations."
   },
   {
-    "act_id": "27",
-    "slug": "evidence_act_1872",
-    "title_en": "The Evidence Act, 1872",
-    "title_bn": "সাক্ষ্য আইন, ১৮৭২",
-    "year": 1872,
-    "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-27.html",
-    "description": "Rules of evidence, admissibility, witness examination, and burden of proof in court proceedings."
-  },
-  {
-    "act_id": "31",
+    "act_id": "36",
     "slug": "specific_relief_act_1877",
     "title_en": "The Specific Relief Act, 1877",
     "title_bn": "সুনির্দিষ্ট প্রতিকার আইন, ১৮৭৭",
     "year": 1877,
     "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-31.html",
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-36.html",
     "description": "Civil relief governing recovery of possession of immovable property, injunctions, and declaratory decrees."
   },
   {
-    "act_id": "36",
-    "slug": "crpc_1898",
-    "title_en": "The Code of Criminal Procedure, 1898",
-    "title_bn": "ফৌজদারী কার্যবিধি, ১৮৯৮",
-    "year": 1898,
-    "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-36.html",
-    "description": "Criminal procedural law for investigation, arrest, bail, trial procedure, and court jurisdictions."
-  },
-  {
-    "act_id": "41",
+    "act_id": "63",
     "slug": "negotiable_instruments_act_1881",
     "title_en": "The Negotiable Instruments Act, 1881",
     "title_bn": "হস্তান্তরযোগ্য দলিল আইন, ১৮৮১",
     "year": 1881,
     "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-41.html",
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-63.html",
     "description": "Law governing promissory notes, bills of exchange, and cheque dishonor offenses under Section 138."
+  },
+  {
+    "act_id": "75",
+    "slug": "crpc_1898",
+    "title_en": "The Code of Criminal Procedure, 1898",
+    "title_bn": "ফৌজদারী কার্যবিধি, ১৮৯৮",
+    "year": 1898,
+    "has_crpc_schedule": false,
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-75.html",
+    "description": "Criminal procedural law for investigation, arrest, bail, trial procedure, and court jurisdictions."
   },
   {
     "act_id": "86",
@@ -70,33 +70,33 @@
     "description": "Civil procedural code governing civil suits, property disputes, execution of decrees, and appeals."
   },
   {
-    "act_id": "312",
+    "act_id": "305",
     "slug": "muslim_family_laws_1961",
     "title_en": "The Muslim Family Laws Ordinance, 1961",
     "title_bn": "মুসলিম পারিবারিক আইন অধ্যাদেশ, ১৯৬১",
     "year": 1961,
     "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-312.html",
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-305.html",
     "description": "Family law governing Muslim succession, marriage registration, polygamy, dower, and divorce (talaq)."
   },
   {
-    "act_id": "356",
+    "act_id": "802",
     "slug": "nari_o_shishu_2000",
     "title_en": "Nari O Shishu Nirjatan Daman Ain, 2000",
     "title_bn": "নারী ও শিশু নির্যাতন দমন আইন, ২০০০",
     "year": 2000,
     "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-356.html",
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-802.html",
     "description": "Special criminal statute for prevention and suppression of offenses against women and children, dowry, and assault."
   },
   {
-    "act_id": "1282",
+    "act_id": "1457",
     "slug": "cyber_security_act_2023",
     "title_en": "Cyber Security Act, 2023",
     "title_bn": "সাইবার নিরাপত্তা আইন, ২০২৩",
     "year": 2023,
     "has_crpc_schedule": false,
-    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-1282.html",
+    "source_url": "http://bdlaws.minlaw.gov.bd/act-print-1457.html",
     "description": "Statute governing cyber offenses, hacking, identity theft, unauthorized data access, and digital forensic investigations."
   }
 ]
