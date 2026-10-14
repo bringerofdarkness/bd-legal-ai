@@ -405,11 +405,10 @@ gantt
     Build PostgreSQL + pgvector Indexer       :done, s2_3, 2026-11-08, 5d
     Automated GraphRAG Link Extractor         :done, s2_4, 2026-11-10, 3d
     Connect Retrieval Service to pgvector     :done, s2_5, 2026-11-13, 4d
-    Parse & Index CrPC Schedule II (Bail DB)  :done, s2_6, 2026-11-17, 4d
     section Sprint 3: Verification & Guardrails
     Integrate ONNX Quantized NLI Validator    :active, s3_1, 2026-11-15, 5d
-    Add BGE-M3 Multilingual Embedding Model   :s3_2, 2026-11-20, 4d
-    Configure Redis Semantic Caching Layer    :s3_3, 2026-11-24, 3d
+    Pydantic Structured Output Synthesis      :s3_2, 2026-11-20, 3d
+    Deterministic Ground-Truth Fallback       :s3_3, 2026-11-23, 2d
     section Sprint 4: CI/CD & Public Release
     Implement 500-Query Bilingual RAGAS Suite :s4_1, 2026-11-27, 6d
     Deploy Production Container & Observability:s4_2, 2026-12-03, 4d
@@ -435,7 +434,7 @@ gantt
 - [x] **Task 2.5:** Replace hardcoded knowledge graph seed list with automated statutory syntax extractor in `ingestion/graph_extractor.py` (228 automated legal relationships discovered and indexed).
 - [x] **Task 2.6:** Create interactive database diagnostic and audit CLI in `scripts/inspect_db.py`.
 - [x] **Task 2.7:** Connect `app/services/retrieval_service.py` directly to PostgreSQL + pgvector (Dense HNSW Vector + Sparse tsvector + RRF Rank Fusion + 1-hop GraphRAG Traversal).
-- [x] **Task 2.8:** Parse CrPC 1898 Schedule II into `crpc_schedule_lookup.json` to automate tagging of `is_bailable` and `is_cognizable` across criminal offences.
+- [x] **Task 2.8:** Re-scoped to dynamic statutory RAG (Zero-Hardcoding Mandate): Procedural queries resolved dynamically via CrPC retrieval and NLI verification without manual seed tables.
 
 #### Priority 3: Verification Guardrails & Zero-Hallucination
 - [ ] **Task 3.1:** Deploy ONNX-quantized `DeBERTa-v3` cross-encoder for post-generation entailment scoring.
