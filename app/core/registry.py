@@ -26,12 +26,9 @@ class LawConfig:
     title_bn: Optional[str]
     year: int
     collection_name: str
-    persist_dir: str
     source_label: str
     description: str = ""
     retrieval_k: int = 6
-    use_bm25: bool = False
-    bm25_corpus_path: Optional[str] = None
     aliases: List[str] = field(default_factory=list)
 
 
@@ -91,7 +88,6 @@ def _load_manifest_registry() -> Dict[str, LawConfig]:
                 title_bn=title_bn,
                 year=year,
                 collection_name=f"bd_{slug}_v1",
-                persist_dir=os.path.join(settings.DATA_DIR, f"chroma_{slug}_v1"),
                 source_label=f"{title_en} (Official Bangladesh Code)",
                 description=item.get("description", ""),
                 retrieval_k=settings.DEFAULT_RETRIEVAL_K,

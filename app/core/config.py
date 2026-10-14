@@ -32,9 +32,6 @@ class Settings(BaseModel):
     DATA_DIR: str = os.path.join(BASE_DIR, "data")
     DOCS_DIR: str = os.path.join(BASE_DIR, "docs")
     
-    # Remote Vector DB Download URL
-    DATA_URL: str = "https://huggingface.co/datasets/bringerofdarkness/bd-legal-ai-db/resolve/main/data.zip"
-
     # Embedding Model Parameters
     EMBEDDING_MODEL_NAME: str = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
 

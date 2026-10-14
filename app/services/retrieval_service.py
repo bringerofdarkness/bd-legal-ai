@@ -21,17 +21,7 @@ from app.services.classifier_service import ClassifierService
 
 logger = get_logger("app.services.retrieval")
 
-# Optional Chroma fallback imports
-try:
-    from langchain_chroma import Chroma
-    from rank_bm25 import BM25Okapi
-    from app.core.registry import LAW_REGISTRY
-except ImportError:
-    Chroma = None
-    BM25Okapi = None
-    LAW_REGISTRY = {}
-
-_VECTORSTORES: Dict[str, Any] = {}
+from app.core.registry import LAW_REGISTRY
 
 
 def get_pg_connection():
@@ -220,7 +210,7 @@ class RetrievalService:
         """
         Coordinates statutory evidence retrieval.
         Attempts native PostgreSQL + pgvector Hybrid Search first;
-        falls back gracefully to local Chroma store if database is offline.
+        falls back gracefully to offline parsed statutory JSON if database is offline.
         """
         analysis = ClassifierService.analyze_query(query)
         law_hint = analysis.get("law_hint")
@@ -242,8 +232,8 @@ class RetrievalService:
         if pg_bundle:
             return pg_bundle
 
-        # 2. Local Fallback for offline development / legacy benchmarks
-        logger.info("Executing local fallback (Chroma / Parsed JSON).")
+        # 2. Local Fallback for offline development and CI environments
+        logger.info("Executing local statutory fallback from parsed acts JSON.")
         return cls._local_fallback(query, analysis, k_final)
 
     @classmethod
@@ -255,8 +245,7 @@ class RetrievalService:
     ) -> List[Dict[str, Any]]:
         """
         Local statutory fallback for offline development and CI environments.
-        Uses local Chroma vectorstore if available; otherwise falls back to
-        parsed statutory JSON files in data/parsed_acts/.
+        Reads directly from parsed statutory JSON files in data/parsed_acts/ (tracked in git).
         """
         active_law_id = analysis.get("law_hint") or ClassifierService.choose_active_law(query)
         if active_law_id is None:
@@ -274,34 +263,6 @@ class RetrievalService:
 
         if not config:
             return []
-
-        # 1. Try local Chroma vector store if present on disk
-        if Chroma is not None and os.path.exists(config.persist_dir):
-            try:
-                emb_model = get_embedding_model()
-                vs = Chroma(
-                    collection_name=config.collection_name,
-                    persist_directory=config.persist_dir,
-                    embedding_function=emb_model,
-                )
-                results = vs.similarity_search_with_score(query, k=k_final)
-                bundle = []
-                for doc, score in results:
-                    md = doc.metadata
-                    bundle.append({
-                        "score": float(score),
-                        "act": md.get("act_name"),
-                        "section": md.get("section_number"),
-                        "heading": md.get("section_heading"),
-                        "pages": (md.get("page_start"), md.get("page_end")),
-                        "source_pdf": md.get("source_pdf"),
-                        "text": doc.page_content,
-                        "graph_relationships": []
-                    })
-                if bundle:
-                    return bundle
-            except Exception as e:
-                logger.warning(f"Local Chroma fallback encountered an error: {e}")
 
         # 2. Resilient Offline JSON fallback from data/parsed_acts/ (tracked in git)
         parsed_acts_dir = os.path.abspath(os.path.join(settings.DATA_DIR, "parsed_acts"))

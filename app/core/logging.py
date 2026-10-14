@@ -27,7 +27,6 @@ def setup_logging(level: str = "INFO") -> None:
     )
 
     # Silence overly verbose external loggers
-    logging.getLogger("chromadb").setLevel(logging.WARNING)
     logging.getLogger("urllib3").setLevel(logging.WARNING)
     logging.getLogger("uvicorn.access").setLevel(logging.INFO)
 
