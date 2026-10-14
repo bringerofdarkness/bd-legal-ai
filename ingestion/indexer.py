@@ -26,30 +26,7 @@ MANIFEST_PATH = os.path.join(os.path.dirname(__file__), "laws_manifest.json")
 PARSED_ACTS_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "parsed_acts")
 
 
-# Curated foundational statutory relationships for GraphRAG
-FOUNDATIONAL_RELATIONSHIPS = [
-    # Penal Code Theft cluster
-    ("11::378", "11::379", "PUNISHED_BY"),
-    ("11::378", "11::380", "AGGRAVATED_FORM"),
-    ("11::378", "11::381", "AGGRAVATED_FORM"),
-    ("11::378", "11::382", "AGGRAVATED_FORM"),
-    ("11::378", "11::22", "REQUIRES_CONCEPT"), # Moveable property
-    # Murder & Homicide cluster
-    ("11::299", "11::300", "DEFINES"),
-    ("11::300", "11::302", "PUNISHED_BY"),
-    ("11::300", "11::304", "AGGRAVATED_FORM"),
-    # Cheating & Fraud cluster
-    ("11::415", "11::417", "PUNISHED_BY"),
-    ("11::415", "11::420", "AGGRAVATED_FORM"),
-    # Rape & Sexual Offenses cluster
-    ("11::375", "11::376", "PUNISHED_BY"),
-    # Extortion cluster
-    ("11::383", "11::384", "PUNISHED_BY"),
-    ("11::383", "11::385", "AGGRAVATED_FORM"),
-    # Contract Act cluster
-    ("26::2", "26::10", "REQUIRES_CONCEPT"), # What agreements are contracts
-    ("26::10", "26::25", "REQUIRES_CONCEPT"), # Agreement without consideration void
-]
+from ingestion.graph_extractor import extract_and_index_all_relationships
 
 
 def load_manifest() -> List[Dict[str, Any]]:
@@ -167,28 +144,6 @@ def index_act_file(conn, act_meta: Dict[str, Any], json_path: str, embedder, bat
         return total_inserted
 
 
-def index_knowledge_graph_relationships(conn):
-    """Populates foundational GraphRAG section relationships."""
-    logger.info("Indexing foundational GraphRAG section relationships...")
-    inserted_count = 0
-    with conn.cursor() as cur:
-        for source, target, rel_type in FOUNDATIONAL_RELATIONSHIPS:
-            try:
-                cur.execute(
-                    """
-                    INSERT INTO section_relationships (source_section_id, target_section_id, relationship_type)
-                    VALUES (%s, %s, %s)
-                    ON CONFLICT (source_section_id, target_section_id, relationship_type) DO NOTHING;
-                    """,
-                    (source, target, rel_type)
-                )
-                inserted_count += 1
-            except Exception as e:
-                logger.debug(f"Relationship skipped: {source} -> {target} ({e})")
-        conn.commit()
-    logger.info(f"Graph relationships registered: {inserted_count} links.")
-
-
 def run_full_indexing(db_url: str = settings.DATABASE_URL, target_act_id: str = None):
     manifest = load_manifest()
     if target_act_id:
@@ -214,7 +169,8 @@ def run_full_indexing(db_url: str = settings.DATABASE_URL, target_act_id: str = 
             count = index_act_file(conn, act, json_path, embedder)
             total_all_sections += count
 
-        index_knowledge_graph_relationships(conn)
+        # Run automated statutory cross-reference extraction for GraphRAG
+        extract_and_index_all_relationships(db_url)
         logger.info(f"=== FULL INDEXING COMPLETE: {total_all_sections} sections indexed in PostgreSQL + pgvector ===")
     finally:
         conn.close()
