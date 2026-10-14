@@ -9,6 +9,7 @@ Includes graceful fallback to local cache if PostgreSQL is offline.
 
 import os
 import re
+import json
 from typing import List, Dict, Any, Optional
 import psycopg
 from pgvector.psycopg import register_vector
@@ -242,44 +243,127 @@ class RetrievalService:
             return pg_bundle
 
         # 2. Local Fallback for offline development / legacy benchmarks
-        logger.info("Executing local Chroma/BM25 fallback.")
-        return cls._local_chroma_fallback(query, analysis, k_final)
+        logger.info("Executing local fallback (Chroma / Parsed JSON).")
+        return cls._local_fallback(query, analysis, k_final)
 
     @classmethod
-    def _local_chroma_fallback(
+    def _local_fallback(
         cls,
         query: str,
         analysis: Dict[str, Any],
         k_final: int
     ) -> List[Dict[str, Any]]:
-        """Local legacy Chroma retrieval for fallback reliability."""
+        """
+        Local statutory fallback for offline development and CI environments.
+        Uses local Chroma vectorstore if available; otherwise falls back to
+        parsed statutory JSON files in data/parsed_acts/.
+        """
         active_law_id = analysis.get("law_hint") or ClassifierService.choose_active_law(query)
-        if active_law_id is None or not LAW_REGISTRY:
-            return []
+        if active_law_id is None:
+            if analysis.get("section_no"):
+                active_law_id = "11"
+            else:
+                return []
 
         config = LAW_REGISTRY.get(active_law_id)
-        if not config or not os.path.exists(config.persist_dir):
+        if not config:
+            for c in LAW_REGISTRY.values():
+                if c.act_id == str(active_law_id):
+                    config = c
+                    break
+
+        if not config:
             return []
 
-        emb_model = get_embedding_model()
-        vs = Chroma(
-            collection_name=config.collection_name,
-            persist_directory=config.persist_dir,
-            embedding_function=emb_model,
-        )
+        # 1. Try local Chroma vector store if present on disk
+        if Chroma is not None and os.path.exists(config.persist_dir):
+            try:
+                emb_model = get_embedding_model()
+                vs = Chroma(
+                    collection_name=config.collection_name,
+                    persist_directory=config.persist_dir,
+                    embedding_function=emb_model,
+                )
+                results = vs.similarity_search_with_score(query, k=k_final)
+                bundle = []
+                for doc, score in results:
+                    md = doc.metadata
+                    bundle.append({
+                        "score": float(score),
+                        "act": md.get("act_name"),
+                        "section": md.get("section_number"),
+                        "heading": md.get("section_heading"),
+                        "pages": (md.get("page_start"), md.get("page_end")),
+                        "source_pdf": md.get("source_pdf"),
+                        "text": doc.page_content,
+                        "graph_relationships": []
+                    })
+                if bundle:
+                    return bundle
+            except Exception as e:
+                logger.warning(f"Local Chroma fallback encountered an error: {e}")
 
-        results = vs.similarity_search_with_score(query, k=k_final)
-        bundle = []
-        for doc, score in results:
-            md = doc.metadata
-            bundle.append({
-                "score": float(score),
-                "act": md.get("act_name"),
-                "section": md.get("section_number"),
-                "heading": md.get("section_heading"),
-                "pages": (md.get("page_start"), md.get("page_end")),
-                "source_pdf": md.get("source_pdf"),
-                "text": doc.page_content,
-                "graph_relationships": []
-            })
-        return bundle
+        # 2. Resilient Offline JSON fallback from data/parsed_acts/ (tracked in git)
+        parsed_acts_dir = os.path.abspath(os.path.join(settings.DATA_DIR, "parsed_acts"))
+        if not os.path.exists(parsed_acts_dir):
+            return []
+
+        target_sec = analysis.get("section_no")
+        q_lower = query.lower()
+
+        # Find matching act JSON file (e.g. 11_penal_code_1860_sections.json)
+        json_file = None
+        for f in os.listdir(parsed_acts_dir):
+            if f.startswith(f"{config.act_id}_") and f.endswith(".json"):
+                json_file = os.path.join(parsed_acts_dir, f)
+                break
+
+        if not json_file or not os.path.exists(json_file):
+            return []
+
+        try:
+            with open(json_file, "r", encoding="utf-8") as f:
+                act_data = json.load(f)
+
+            sections = act_data.get("sections", [])
+            matches = []
+
+            # Exact section match priority
+            if target_sec:
+                for s in sections:
+                    if str(s.get("section_no")) == str(target_sec):
+                        matches.append(s)
+                        break
+
+            # Keyword / Semantic fallback in JSON
+            if not matches:
+                keywords = [w for w in re.findall(r"\w+", q_lower) if len(w) > 3]
+                scored_sections = []
+                for s in sections:
+                    full_text = (s.get("full_text") or "").lower()
+                    heading = (s.get("section_heading") or "").lower()
+                    match_count = sum(1 for kw in keywords if kw in full_text or kw in heading)
+                    if match_count > 0:
+                        scored_sections.append((match_count, s))
+                scored_sections.sort(key=lambda x: x[0], reverse=True)
+                matches = [s for _, s in scored_sections[:k_final]]
+
+            bundle = []
+            for s in matches[:k_final]:
+                sec_no = s.get("section_no")
+                heading = s.get("section_heading")
+                full_text = s.get("full_text") or f"{sec_no}. {heading}\n{s.get('body_text')}"
+                bundle.append({
+                    "score": 1.0,
+                    "act": config.display_name,
+                    "section": sec_no,
+                    "heading": heading,
+                    "pages": None,
+                    "source_pdf": None,
+                    "text": full_text,
+                    "graph_relationships": []
+                })
+            return bundle
+        except Exception as e:
+            logger.error(f"Error reading offline parsed act JSON: {e}")
+            return []
